@@ -200,23 +200,23 @@ you have to run following command in your cli:
 After this migration you have to flush your frontend cache:  
 `./flow cache:flushone --identifier Neos_Fusion_Content`
 
-[packagist]: https://packagist.org/packages/jonnitto/prettyembedyoutube
-[latest stable version]: https://poser.pugx.org/jonnitto/prettyembedyoutube/v/stable
-[total downloads]: https://poser.pugx.org/jonnitto/prettyembedyoutube/downloads
-[license]: https://poser.pugx.org/jonnitto/prettyembedyoutube/license
-[github forks]: https://img.shields.io/github/forks/jonnitto/Jonnitto.PrettyEmbedYoutube.svg?style=social&label=Fork
+[packagist]: https://packagist.org/packages/jonnitto/prettyembedvideoplatforms
+[latest stable version]: https://poser.pugx.org/jonnitto/prettyembedvideoplatforms/v/stable
+[total downloads]: https://poser.pugx.org/jonnitto/prettyembedvideoplatforms/downloads
+[license]: https://poser.pugx.org/jonnitto/prettyembedvideoplatforms/license
+[github forks]: https://img.shields.io/github/forks/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms.svg?style=social&label=Fork
 [donate paypal]: https://img.shields.io/badge/Donate-PayPal-yellow.svg
 [wishlist amazon]: https://img.shields.io/badge/Wishlist-Amazon-yellow.svg
 [amazon]: https://www.amazon.de/hz/wishlist/ls/2WPGORAVYF39B?&sort=default
 [paypal]: https://www.paypal.me/Jonnitto/20eur
-[github stars]: https://img.shields.io/github/stars/jonnitto/Jonnitto.PrettyEmbedYoutube.svg?style=social&label=Stars
-[github watchers]: https://img.shields.io/github/watchers/jonnitto/Jonnitto.PrettyEmbedYoutube.svg?style=social&label=Watch
+[github stars]: https://img.shields.io/github/stars/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms.svg?style=social&label=Stars
+[github watchers]: https://img.shields.io/github/watchers/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms.svg?style=social&label=Watch
 [github followers]: https://img.shields.io/github/followers/jonnitto.svg?style=social&label=Follow
 [follow jon on twitter]: https://img.shields.io/twitter/follow/jonnitto.svg?style=social&label=Follow
 [twitter]: https://twitter.com/jonnitto
-[fork]: https://github.com/jonnitto/Jonnitto.PrettyEmbedYoutube/fork
-[stargazers]: https://github.com/jonnitto/Jonnitto.PrettyEmbedYoutube/stargazers
-[subscription]: https://github.com/jonnitto/Jonnitto.PrettyEmbedYoutube/subscription
+[fork]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms/fork
+[stargazers]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms/stargazers
+[subscription]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms/subscription
 [followers]: https://github.com/jonnitto/followers
 [license]: LICENSE
 [neos cms]: https://www.neos.io
