@@ -8,4 +8,5 @@
         label: i18n
         inspector:
           group: look
+          hidden: 'ClientEval:node.properties.platform != "youtube"'
           position: 80
