@@ -5,7 +5,6 @@ up:
         - type: NodeType
           settings:
             nodeType: 'Jonnitto.PrettyEmbedYoutube:Content.YouTube'
-            withSubTypes: true
       transformations:
         - type: ChangeNodeType
           settings:
@@ -18,7 +17,6 @@ up:
         - type: NodeType
           settings:
             nodeType: 'Jonnitto.PrettyEmbedVimeo:Content.Vimeo'
-            withSubTypes: true
       transformations:
         - type: ChangeNodeType
           settings:
