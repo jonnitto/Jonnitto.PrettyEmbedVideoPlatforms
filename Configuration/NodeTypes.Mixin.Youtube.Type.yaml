@@ -1,0 +1,25 @@
+'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.Youtube.Type':
+  abstract: true
+  properties:
+    type:
+      type: string
+      defaultValue: video
+      ui:
+        label: i18n
+        reloadIfChanged: true
+        inspector:
+          group: videoplatform
+          position: 20
+          hidden: 'ClientEval:node.properties.platform != "youtube"'
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            disabled: true
+            values:
+              video:
+                label: i18n
+                icon: film
+              playlist:
+                label: i18n
+                icon: th-list
+      validation:
+        Neos.Neos/Validation/NotEmptyValidator: []

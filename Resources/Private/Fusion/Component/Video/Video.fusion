@@ -1,0 +1,75 @@
+prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.Fusion:Component) {
+    configuration = ${Configuration.setting('Jonnitto.PrettyEmbedVideoPlatforms')}
+
+    live = true
+    platform = null
+    videoID = null
+    videoID.@process.trim = ${Type.isString(value) ? String.trim(value) : value}
+
+    lightbox = ${this.configuration.defaults.lightbox}
+    preserveAspectRatio = ${this.configuration.defaults.preserveAspectRatio}
+    allowFullScreen = ${this.configuration.defaults.allowFullScreen}
+    
+    controls = ${this.configuration.defaults.controls}
+    loop = ${this.configuration.defaults.loop}
+    
+    playsinline = ${this.configuration.defaults.playsinline}
+    enableJsApi = ${this.configuration.enableJsApi}
+    loadImageStrategy = ${this.configuration.loadImageStrategy}
+    enableGdprMessage = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.enableGdprMessage')}
+    gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
+
+    # Pass a ratio like this: ${16 / 9}
+    ratio = null
+    ratio.@process.calculatePaddingTop = ${Jonnitto.PrettyEmbedHelper.paddingTop(value)}
+
+    // If true, this get only a value if ratio is not set
+    force16to9 = ${this.configuration.defaults.force16to9}
+    force16to9.@process.calculatePaddingTop = ${!this.ratio && value ? Jonnitto.PrettyEmbedHelper.paddingTop(16 / 9) : false}
+    
+    wrapper = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.wrapper')}
+
+    id = null
+
+    poster = null
+    poster2x = null
+    alternativeText = null
+    origin = null
+
+    playButton = Jonnitto.PrettyEmbedHelper:Button.Play
+
+    // YouTube specific
+    type = null
+    closedCaptions = ${this.configuration.defaults.closedCaptions}
+    showRelated = ${this.configuration.defaults.showRelated}
+
+    // Vimeo specific
+    color = ${this.configuration.defaults.color}
+    autopause = ${this.configuration.defaults.autopause}
+    background = ${this.configuration.defaults.background}
+    muted = ${this.configuration.defaults.muted}
+    transparent = ${this.configuration.defaults.transparent}
+    previewTitle = ${this.configuration.defaults.previewTitle}
+    previewByline = ${this.configuration.defaults.previewByline}
+    previewPortrait = ${this.configuration.defaults.previewPortrait}
+
+
+    // Internal
+    isYouTube = ${this.platform == 'youtube'}
+    look = ${this.lightbox ? 'lightbox' : 'inline'}
+    url = ${this.isYouTube ? this.configuration.youtube[this.type] : this.configuration[this.platform]}
+    hasRatioAndNoLightboxWithPreserveAspectRatio = ${this.lightbox && this.preserveAspectRatio ? false : !!this.ratio}
+    forceRatio = ${this.ratio || this.force16to9}
+
+    previewImageClass = ${!this.poster && this.isYouTube ? 'jonnitto-prettyembed__youtube-preview' : null}
+    posterFromYoutube = ${this.isYouTube && this.type == 'video' && !this.poster ? '//i.ytimg.com/vi/' + this.videoID + '/maxresdefault.jpg' : null}
+    posterFromVimeo = ${this.platform == 'vimeo' && !this.poster ? Jonnitto.PrettyEmbedHelper.vimeoThumbnail(this.videoID) : null}
+    poster.@process.guessPoster = ${value || this.posterFromYoutube || this.posterFromVimeo}
+
+    @if.hasNeededProperties = ${this.platform && this.videoID && this.poster && (this.isYouTube ? !!this.platform : true)}
+
+    renderer = afx`
+        <Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Youtube @if.set={props.platform == 'youtube'} {...props} />
+        <Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Vimeo @if.set={props.platform == 'vimeo'} {...props} />
+    `
+}

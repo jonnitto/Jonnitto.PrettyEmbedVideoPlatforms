@@ -1,0 +1,63 @@
+Jonnitto:
+  PrettyEmbedVideoPlatforms:
+    enableJsApi: false
+    loadImageStrategy: lazy
+    defaults:
+      # Should the video be opened on a lightbox? Per default this is set via the node properties
+      lightbox: false
+      # When the lightbox is set, should the preview image preserve his aspect ratio? Per default this is set via the node properties
+      preserveAspectRatio: true
+      # If no aspect ratio can be calcualted from the oembed service, you have the possibility to force the aspect ratio 16:9. Per default this is set via the node properties
+      force16to9: true
+      # Whether to restart the video automatically after reaching the end.
+      loop: false
+      # Whether the video plays inline on supported mobile devices.
+      # Note that if set to false it does not imply that the video will always be played in fullscreen.
+      playsinline: true
+      # Allow full screen
+      allowFullScreen: true
+
+      #################################
+      # Additional settings for Youtube
+      #################################
+
+      # This parameter indicates whether the video player controls are displayed
+      controls: true
+      # Setting the parameter's value to true causes closed captions to be shown by default,
+      # even if the user has turned captions off.
+      closedCaptions: false
+      # It is not possible to disable related videos, but if it is set to false, the player will
+      # show related videos that are from the same channel as the video that was just played.
+      showRelated: false
+
+      ###############################
+      # Additional settings for Vimeo
+      ###############################
+
+      # Whether to pause the current video when another Vimeo video on the same page starts to play.
+      # Set this value to false to permit simultaneous playback of all the videos on the page.
+      autopause: true
+      # Whether the player is in background mode, which hides the playback controls, enables autoplay, and loops the video.
+      background: false
+      # Whether the video is muted upon loading. The true value is required for the autoplay behavior in some browsers.
+      muted: false
+      # Whether the responsive player and transparent background are enabled
+      transparent: true
+      # The hexadecimal color value of the playback controls, which is normally 00ADEF.
+      color: false
+      # Whether the player displays the title overlay
+      previewTitle: false
+      # Whether to display the video owner's name.
+      previewByline: false
+      # Whether to display the video owner's portrait.
+      previewPortrait: false
+    youtube:
+      playlist:
+        embed: 'https://www.youtube.com/embed/videoseries?list=%id%'
+        href: 'https://www.youtube.com/playlist?list=%id%'
+      video:
+        embed: 'https://www.youtube.com/embed/%id%'
+        href: 'https://www.youtube.com/watch?v=%id%'
+    vimeo:
+      embed: 'https://player.vimeo.com/video/%id%'
+      href: 'https://vimeo.com/%id%'

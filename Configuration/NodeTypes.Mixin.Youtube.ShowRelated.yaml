@@ -1,0 +1,11 @@
+'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.Youtube.ShowRelated':
+  abstract: true
+  properties:
+    showRelated:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: i18n
+        inspector:
+          group: look
+          position: 80

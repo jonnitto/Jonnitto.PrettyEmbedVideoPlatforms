@@ -1,0 +1,24 @@
+'Jonnitto.PrettyEmbedVideoPlatforms:Content.Video':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Jonnitto.PrettyEmbedHelper:Mixin.Groups': true
+    'Jonnitto.PrettyEmbedHelper:Mixin.IncludeAssets': true
+    'Jonnitto.PrettyEmbedHelper:Mixin.Image': true
+    'Jonnitto.PrettyEmbedHelper:Mixin.Lightbox': true
+    'Jonnitto.PrettyEmbedHelper:Mixin.PreserveAspectRatio': true
+    'Jonnitto.PrettyEmbedHelper:Mixin.BackendLabel': true
+    'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.VideoID': true
+    'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.IncludeJsApi': true
+    'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.Youtube.Type': true
+
+    # If you want to give the editor more control,
+    # you can also add also these mixins:
+    # 'Jonnitto.PrettyEmbedHelper:Mixin.AllowFullScreen': true
+    # 'Jonnitto.PrettyEmbedHelper:Mixin.Loop': true
+    # 'Jonnitto.PrettyEmbedHelper:Mixin.Controls': true
+    # 'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.Youtube.ClosedCaptions': true
+    # 'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.Youtube.ShowRelated': true
+  ui:
+    label: 'Vimeo / YouTube'
+    icon: play-circle
+    position: 900

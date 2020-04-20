@@ -1,0 +1,10 @@
+Neos:
+  Neos:
+    userInterface:
+      translation:
+        autoInclude:
+          Jonnitto.PrettyEmbedVideoPlatforms:
+            - 'NodeTypes/*'
+    fusion:
+      autoInclude:
+        Jonnitto.PrettyEmbedVideoPlatforms: true

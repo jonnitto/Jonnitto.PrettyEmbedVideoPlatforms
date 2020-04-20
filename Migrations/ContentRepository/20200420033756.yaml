@@ -1,0 +1,32 @@
+up:
+  comments: 'Merge PrettyEmbedYoutube and PrettyEmbedVimeo into PrettyEmbedVideoPlatforms'
+  migration:
+    - filters:
+        - type: NodeType
+          settings:
+            nodeType: 'Jonnitto.PrettyEmbedYoutube:Content.YouTube'
+            withSubTypes: true
+      transformations:
+        - type: ChangeNodeType
+          settings:
+            newType: 'Jonnitto.PrettyEmbedVideoPlatforms:Content.Video'
+        - type: AddNewProperty
+          settings:
+            newPropertyName: platform
+            value: youtube
+    - filters:
+        - type: NodeType
+          settings:
+            nodeType: 'Jonnitto.PrettyEmbedVimeo:Content.Vimeo'
+            withSubTypes: true
+      transformations:
+        - type: ChangeNodeType
+          settings:
+            newType: 'Jonnitto.PrettyEmbedVideoPlatforms:Content.Video'
+        - type: AddNewProperty
+          settings:
+            newPropertyName: platform
+            value: vimeo
+
+down:
+  comments: 'No down migration available'

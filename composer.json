@@ -1,0 +1,42 @@
+{
+    "name": "jonnitto/prettyembedvideoplatforms",
+    "type": "neos-plugin",
+    "license": "GPL-3.0-or-later",
+    "description": "Prettier embeds for your YouTube and Vimeo videos and playlists in Neos CMS - with nice options like high-res preview images, lightbox feature and advanced customization of embed options.",
+    "keywords": [
+        "flow",
+        "neos",
+        "video",
+        "youtube",
+        "vimeo",
+        "contentelement"
+    ],
+    "support": {
+        "issues": "https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms/issues",
+        "source": "https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms"
+    },
+    "homepage": "https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms",
+    "authors": [
+        {
+            "name": "Jon Uhlmann",
+            "email": "me@jonnitto.ch",
+            "homepage": "https://twitter.com/jonnitto",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "jonnitto/prettyembedhelper": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jonnitto\\PrettyEmbedVideoPlatforms\\": "Classes"
+        }
+    },
+    "extra": {
+        "marketplace-account": "me@jonnitto.ch",
+        "installer-name": "Jonnitto.PrettyEmbedVideoPlatforms",
+        "neos": {
+            "package-key": "Jonnitto.PrettyEmbedVideoPlatforms"
+        }
+    }
+}
