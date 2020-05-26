@@ -48,22 +48,22 @@ If you want to use the JavaScript API from youtube (e.g., for tracking), you hav
 
 ```yaml
 Jonnitto:
-    PrettyEmbedVideoPlatforms:
-        enableJsApi: true
+  PrettyEmbedVideoPlatforms:
+    enableJsApi: true
 ```
 
 or, if you want to use the youtube-nocookie.com domain you can also edit the entries in your `Settings.yaml` file like this:
 
 ```yaml
 Jonnitto:
-    PrettyEmbedVideoPlatforms:
-        youtube:
-            playlist:
-                embed: "https://www.youtube-nocookie.com/embed/videoseries?list=%id%"
-                href: "https://www.youtube-nocookie.com/playlist?list=%id%"
-            video:
-                embed: "https://www.youtube-nocookie.com/embed/%id%"
-                href: "https://www.youtube-nocookie.com/watch?v=%id%"
+  PrettyEmbedVideoPlatforms:
+    youtube:
+      playlist:
+        embed: 'https://www.youtube-nocookie.com/embed/videoseries?list=%id%'
+        href: 'https://www.youtube-nocookie.com/playlist?list=%id%'
+      video:
+        embed: 'https://www.youtube-nocookie.com/embed/%id%'
+        href: 'https://www.youtube-nocookie.com/watch?v=%id%'
 ```
 
 Be aware that you need to provide the placeholder for the ID (`%id%`) of the playlist or video.
@@ -74,20 +74,24 @@ Some settings will be set globally from the [PrettyEmbedHelper] package. These a
 
 ```yaml
 Jonnitto:
-    PrettyEmbedHelper:
-        # For Vimeo and Youtube you can enable here the option the show a confirm dialog
-        # that external content get loaded and the user may be tracked
-        enableGdprMessage: false
-        # This is the maximum width of a custom preview image
-        maximumWidth: 1920
-        # If this is set to a string, the element gets wrapped with a div and the class with the giving string.
-        # If set to true, the element gets wrapped with a div without any class.
-        # If set to false, the element get not wrapped at all
-        wrapper: "jonnitto-prettyembed-wrapper"
-        # The buttons which get injected (file content) to the player.
-        button:
-            play: "resource://Jonnitto.PrettyEmbedHelper/Public/Assets/PlayButton.svg"
-            pause: "resource://Jonnitto.PrettyEmbedHelper/Public/Assets/PauseButton.svg"
+  PrettyEmbedHelper:
+    # For Vimeo and Youtube you can enable here the option the show a confirm dialog
+    # that external content get loaded and the user may be tracked
+    enableGdprMessage: false
+
+    # This is the maximum width of a custom preview image
+    maximumWidth: 1920
+
+    # If this is set to a string, the element gets wrapped with a div and the class with the giving string.
+    # If set to true, the element gets wrapped with a div without any class.
+    # If set to false, the element get not wrapped at all
+
+    wrapper: 'jonnitto-prettyembed-wrapper'
+
+    # The buttons which get injected (file content) to the player.
+    button:
+      play: 'resource://Jonnitto.PrettyEmbedHelper/Public/Assets/PlayButton.svg'
+      pause: 'resource://Jonnitto.PrettyEmbedHelper/Public/Assets/PauseButton.svg'
 ```
 
 #### Disable inclusion of the CSS and/or JS files
@@ -98,11 +102,11 @@ If you want to load your CSS, you can disable only the [`Main.scss`] like that:
 
 ```yaml
 Carbon:
-    IncludeAssets:
-        Packages:
-            "Jonnitto.PrettyEmbedHelper":
-                General:
-                    Head: []
+  IncludeAssets:
+    Packages:
+      'Jonnitto.PrettyEmbedHelper':
+        General:
+          Head: []
 ```
 
 If you use SCCS in your build pipeline, you can adjust the look and feel of [`Main.scss`] with following variables:
@@ -111,10 +115,10 @@ If you use SCCS in your build pipeline, you can adjust the look and feel of [`Ma
 // Buttons (play / pause)
 $prettyembed-button-play-size: 72px !default;
 $prettyembed-button-pause-size: round(
-    $prettyembed-button-play-size / 2
+  $prettyembed-button-play-size / 2
 ) !default;
 $prettyembed-button-pause-margin: round(
-    $prettyembed-button-pause-size / 2
+  $prettyembed-button-pause-size / 2
 ) !default;
 $prettyembed-button-opacity: 0.9 !default;
 $prettyembed-button-scale: 0.8 !default;
@@ -149,9 +153,9 @@ the editor choose if the video is allowed to play the video in fullscreen or not
 the mixin in your Configuration folder like this:
 
 ```yaml
-"Jonnitto.PrettyEmbedVideoPlatforms:Content.Video":
-    superTypes:
-        "Jonnitto.PrettyEmbedHelper:Mixin.AllowFullScreen": true
+'Jonnitto.PrettyEmbedVideoPlatforms:Content.Video':
+  superTypes:
+    'Jonnitto.PrettyEmbedHelper:Mixin.AllowFullScreen': true
 ```
 
 These are the available mixins:
@@ -185,8 +189,8 @@ If you want to read the node properties and let the package handle all for you, 
 To get the metadata, you can run the flow command `./flow prettyembed:metadata`. This command search for nodes with the `VideoID` mixin, and tries to get the metadata. If for some reason, it is not possible to fetch the metadata (Perhaps the video is set to private, or the ID does not exist), you will get a table with the name of the node type, the type, the video ID and the node path.  
 The task comes with two options:
 
--   `--workspace` Workspace name, default is 'live'
--   `--remove` Is set, all metadata will be removed
+- `--workspace` Workspace name, default is 'live'
+- `--remove` Is set, all metadata will be removed
 
 To get an overview of the options in the cli, you can run `./flow help prettyembed:metadata`
 
