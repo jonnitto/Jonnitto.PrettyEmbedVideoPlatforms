@@ -169,7 +169,6 @@ These are the available mixins:
 | `Helper:Mixin.AllowFullScreen`                           | Allow fullscreen or not                                                     |    `true`     |                     |
 | `Helper:Mixin.Loop`                                      | Loop the video                                                              |    `false`    |                     |
 | `Helper:Mixin.Controls`                                  | Show the controls                                                           |    `true`     |                     |
-| `PrettyEmbedVideoPlatforms:Mixin.Youtube.ShowInfo`       | Show the info bar                                                           |    `false`    |                     |
 | `PrettyEmbedVideoPlatforms:Mixin.Youtube.ClosedCaptions` | Show captions                                                               |    `false`    |                     |
 | `PrettyEmbedVideoPlatforms:Mixin.Youtube.ShowRelated`    | If `false`, show only related videos that are from the same channel         |    `false`    |                     |
 
