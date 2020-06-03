@@ -16,99 +16,99 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
     enableGdprMessage = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.enableGdprMessage')}
     gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
 
-    # Should the video be opened on a lightbox?
+    // Should the video be opened on a lightbox?
     lightbox = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'lightbox'
     }
 
-    # When the lightbox is set, should the preview image preserve his aspect ratio?
+    // When the lightbox is set, should the preview image preserve his aspect ratio?
     preserveAspectRatio = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'preserveAspectRatio'
     }
 
-    # If no aspect ratio can be calcualted from the oembed service, you have the possibility to force the aspect ratio 16:9
+    // If no aspect ratio can be calcualted from the oembed service, you have the possibility to force the aspect ratio 16:9
     force16to9 = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'force16to9'
     }
 
-    # Whether to restart the video automatically after reaching the end.
+    // Whether to restart the video automatically after reaching the end.
     loop = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'loop'
     }
 
-    # Whether the video plays inline on supported mobile devices.
-    # Note that if set to false it does not imply that the video will always be played in fullscreen.
+    // Whether the video plays inline on supported mobile devices.
+    // Note that if set to false it does not imply that the video will always be played in fullscreen.
     playsinline = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'playsinline'
     }
 
-    # Allow full screen
+    // Allow full screen
     allowFullScreen = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'allowFullScreen'
     }
 
-    #################################
-    # Additional settings for Youtube
-    #################################
+    //////////////////////////////////
+    // Additional settings for Youtube
+    //////////////////////////////////
 
-    # This parameter indicates whether the video player controls are displayed
+    // This parameter indicates whether the video player controls are displayed
     controls = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'controls'
     }
 
-    # Setting the parameter's value to true causes closed captions to be shown by default,
-    # even if the user has turned captions off.
+    // Setting the parameter's value to true causes closed captions to be shown by default,
+    // even if the user has turned captions off.
     closedCaptions = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'closedCaptions'
     }
 
-    # It is not possible to disable related videos, but if it is set to false, the player will
-    # show related videos that are from the same channel as the video that was just played.
+    // It is not possible to disable related videos, but if it is set to false, the player will
+    // show related videos that are from the same channel as the video that was just played.
     showRelated = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'showRelated'
     }
 
-    ###############################
-    # Additional settings for Vimeo
-    ###############################
+    ////////////////////////////////
+    // Additional settings for Vimeo
+    ////////////////////////////////
 
-    # Whether to pause the current video when another Vimeo video on the same page starts to play.
-    # Set this value to false to permit simultaneous playback of all the videos on the page.
+    // Whether to pause the current video when another Vimeo video on the same page starts to play.
+    // Set this value to false to permit simultaneous playback of all the videos on the page.
     autopause = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'autopause'
     }
 
-    # Whether the player is in background mode, which hides the playback controls, enables autoplay, and loops the video.
+    // Whether the player is in background mode, which hides the playback controls, enables autoplay, and loops the video.
     background = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'background'
     }
 
-    # Whether the video is muted upon loading. The true value is required for the autoplay behavior in some browsers.
+    // Whether the video is muted upon loading. The true value is required for the autoplay behavior in some browsers.
     muted = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'muted'
     }
 
-    # Whether the responsive player and transparent background are enabled
+    // Whether the responsive player and transparent background are enabled
     transparent = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'transparent'
     }
 
-    # The hexadecimal color value of the playback controls, which is normally 00ADEF.
+    // The hexadecimal color value of the playback controls, which is normally 00ADEF.
     color = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'color'
     }
 
-    # Whether the player displays the title overlay
+    // Whether the player displays the title overlay
     previewTitle = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'previewTitle'
     }
 
-    # Whether to display the video owner's name.
+    // Whether to display the video owner's name.
     previewByline = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'previewByline'
     }
 
-    # Whether to display the video owner's portrait.
+    // Whether to display the video owner's portrait.
     previewPortrait = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'previewPortrait'
     }

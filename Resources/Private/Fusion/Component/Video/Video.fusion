@@ -9,17 +9,17 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
     lightbox = ${this.configuration.defaults.lightbox}
     preserveAspectRatio = ${this.configuration.defaults.preserveAspectRatio}
     allowFullScreen = ${this.configuration.defaults.allowFullScreen}
-    
+
     controls = ${this.configuration.defaults.controls}
     loop = ${this.configuration.defaults.loop}
-    
+
     playsinline = ${this.configuration.defaults.playsinline}
     enableJsApi = ${this.configuration.enableJsApi}
     loadImageStrategy = ${this.configuration.loadImageStrategy}
     enableGdprMessage = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.enableGdprMessage')}
     gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
 
-    # Pass a ratio like this: ${16 / 9}
+    // Pass a ratio like this: ${16 / 9}
     ratio = null
     ratio.@process.calculatePaddingTop = ${Jonnitto.PrettyEmbedHelper.paddingTop(value)}
 
