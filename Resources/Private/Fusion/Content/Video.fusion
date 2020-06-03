@@ -12,6 +12,9 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
     ratio = ${q(node).property('metadataRatio')}
     async = true
 
+    // This can used as alternative preview
+    content = null
+
     loadImageStrategy = ${Configuration.setting('Jonnitto.PrettyEmbedVideoPlatforms.loadImageStrategy')}
     enableGdprMessage = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.enableGdprMessage')}
     gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
@@ -127,6 +130,10 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
     renderer = Neos.Fusion:Component {
         @apply.props = ${props}
         poster = Neos.Fusion:Case {
+            hasAlternativePreview {
+                condition = ${props.content}
+                renderer = true
+            }
             hasPersisantResource {
                 condition = ${props.image || props.thumbnailFromResources}
                 renderer = Neos.Neos:ImageUri {

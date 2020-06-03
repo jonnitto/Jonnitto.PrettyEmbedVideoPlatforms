@@ -1,6 +1,9 @@
 prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.Fusion:Component) {
     configuration = ${Configuration.setting('Jonnitto.PrettyEmbedVideoPlatforms')}
 
+    // This can used as alternative preview
+    content = null
+
     live = true
     platform = null
     videoID = null
@@ -66,7 +69,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
     posterFromVimeo = ${this.platform == 'vimeo' && !this.poster ? Jonnitto.PrettyEmbedHelper.vimeoThumbnail(this.videoID) : null}
     poster.@process.guessPoster = ${value || this.posterFromYoutube || this.posterFromVimeo}
 
-    @if.hasNeededProperties = ${this.platform && this.videoID && this.poster && (this.isYouTube ? !!this.platform : true)}
+    @if.hasNeededProperties = ${this.platform && this.videoID && (this.poster || this.content) && (this.isYouTube ? !!this.platform : true)}
 
     renderer = afx`
         <Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Youtube @if.set={props.platform == 'youtube'} {...props} />

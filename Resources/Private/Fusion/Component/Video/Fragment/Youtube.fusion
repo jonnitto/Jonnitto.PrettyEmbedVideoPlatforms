@@ -36,7 +36,8 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Youtube) <
         }
         content = afx`
             {props.playButton}
-            <img alt={props.alternativeText} src={props.poster} srcset={props.poster && props.poster2x ? props.poster + ' 1x,' + props.poster2x + ' 2x' : null} class={props.previewImageClass} loading={props.loadImageStrategy} />
+            {props.content}
+            <img @if.set={!props.content} alt={props.alternativeText} src={props.poster} srcset={props.poster && props.poster2x ? props.poster + ' 1x,' + props.poster2x + ' 2x' : null} class={props.previewImageClass} loading={props.loadImageStrategy} />
         `
 
         @process.wrapper = Jonnitto.PrettyEmbedHelper:Wrapper {
