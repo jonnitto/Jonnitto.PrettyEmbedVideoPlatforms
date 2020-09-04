@@ -19,6 +19,8 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
     enableGdprMessage = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.enableGdprMessage')}
     gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
 
+    showBackendNotification = true
+
     // Should the video be opened on a lightbox?
     lightbox = Jonnitto.PrettyEmbedHelper:GetProperty {
         property = 'lightbox'
@@ -164,6 +166,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
             noVideoID {
                 condition = ${!props.videoID || !props.platform}
                 renderer = Jonnitto.PrettyEmbedHelper:Notification {
+                    @if.set = ${props.showBackendNotification}
                     key = 'noVideoID'
                     default = 'Please add a Video URL / ID or url in the inspector'
                 }
