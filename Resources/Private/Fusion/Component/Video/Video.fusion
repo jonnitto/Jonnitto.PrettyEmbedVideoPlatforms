@@ -24,12 +24,11 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
 
     // Pass a ratio like this: ${16 / 9}
     ratio = null
-    ratio.@process.calculatePaddingTop = ${Jonnitto.PrettyEmbedHelper.paddingTop(value)}
 
     // If true, this get only a value if ratio is not set
     force16to9 = ${this.configuration.defaults.force16to9}
-    force16to9.@process.calculatePaddingTop = ${!this.ratio && value ? Jonnitto.PrettyEmbedHelper.paddingTop(16 / 9) : false}
-    
+    force16to9.@process.setRatio = ${value ? (16 / 9) : false}
+
     wrapper = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.wrapper')}
 
     id = null
@@ -62,17 +61,17 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
     look = ${this.lightbox ? 'lightbox' : 'inline'}
     url = ${this.isYouTube ? this.configuration.youtube[this.type] : this.configuration[this.platform]}
     hasRatioAndNoLightboxWithPreserveAspectRatio = ${this.lightbox && this.preserveAspectRatio ? false : !!this.ratio}
-    forceRatio = ${this.ratio || this.force16to9}
+    forceRatio = ${Jonnitto.PrettyEmbedHelper.paddingTop(this.ratio || this.force16to9)}
 
     previewImageClass = ${!this.poster && this.isYouTube ? 'jonnitto-prettyembed__youtube-preview' : null}
     posterFromYoutube = ${this.isYouTube && this.type == 'video' && !this.poster ? '//i.ytimg.com/vi/' + this.videoID + '/maxresdefault.jpg' : null}
     posterFromVimeo = ${this.platform == 'vimeo' && !this.poster ? Jonnitto.PrettyEmbedHelper.vimeoThumbnail(this.videoID) : null}
-    poster.@process.guessPoster = ${value || this.posterFromYoutube || this.posterFromVimeo}
+    finalPoster = ${this.poster || this.posterFromYoutube || this.posterFromVimeo}
 
-    @if.hasNeededProperties = ${this.platform && this.videoID && (this.poster || this.content) && (this.isYouTube ? !!this.platform : true)}
+    @if.hasNeededProperties = ${this.platform && this.videoID && (this.finalPoster || this.content) && (this.isYouTube ? !!this.platform : true)}
 
     renderer = afx`
-        <Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Youtube @if.set={props.platform == 'youtube'} {...props} />
-        <Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Vimeo @if.set={props.platform == 'vimeo'} {...props} />
+        <Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Youtube @if.set={props.platform == 'youtube'} {...props} poster={props.finalPoster} />
+        <Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Vimeo @if.set={props.platform == 'vimeo'} {...props} poster={props.finalPoster} />
     `
 }
