@@ -1,39 +1,8 @@
 prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Vimeo) < prototype(Neos.Fusion:Component) {
     renderer = Neos.Fusion:Tag {
         tagName = ${props.live ? 'a' : 'div'}
-        attributes {
-            id = ${props.id}
-            class = Carbon.Eel:BEM {
-                block = 'jonnitto-prettyembed'
-                modifier = Neos.Fusion:DataStructure {
-                    vimeo = true
-                    iframe = true
-                    ratio = ${!!props.force16to9 || !!props.hasRatioAndNoLightboxWithPreserveAspectRatio}
-                    type = ${props.look}
-                }
-            }
-            href = ${String.replace(props.url.href, '%id%', props.videoID)}
-            rel = 'noopener'
-            target = '_blank'
-            style = ${props.force16to9 || props.hasRatioAndNoLightboxWithPreserveAspectRatio ? 'padding-top:' + props.forceRatio : null}
-            data-gdpr = ${props.enableGdprMessage && props.gdprMessage ? props.gdprMessage : null}
-            data-ratio = ${props.forceRatio || null}
-            data-fs = ${!!props.allowFullScreen}
-            data-embed = Neos.Fusion:Join {
-                src             = ${String.replace(props.url.embed, '%id%', props.videoID)}
-                connect         = ${String.indexOf(props.url.embed, '?') == -1 ? '?' : '&'}
-                autoplay        = 'autoplay=1'
-                loop            = ${props.loop ? '&loop=1' : ''}
-                color           = ${props.color ? '&color=' + String.replace(props.color, '#', '') : ''}
-                autopause       = ${props.autopause ? '' : '&autopause=0'}
-                background      = ${props.background ? '' : '&background=0'}
-                muted           = ${props.muted ? '&muted=1' : ''}
-                playsinline     = ${props.playsinline ? '' : '&playsinline=0'}
-                transparent     = ${props.transparent ? '' : '&transparent=0'}
-                previewTitle    = ${props.previewTitle ? '' : '&title=0'}
-                previewByline   = ${props.previewByline ? '' : '&byline=0'}
-                previewPortrait = ${props.previewPortrait ? '' : '&portrait=0'}
-            }
+        attributes = Jonnitto.PrettyEmbedVideoPlatforms:Component.Attributes {
+             @apply.props = ${props}
         }
         content = afx`
             {props.playButton}
