@@ -6,7 +6,8 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
     videoID = ${q(node).property('videoID')}
 
     metadataID = ${q(node).property('metadataID')}
-    alternativeText = ${q(node).property('metadataTitle')}
+    metadataTitle = ${q(node).property('metadataTitle')}
+    alternativeText = ${this.metadataTitle}
     imageFromPlatform = ${q(node).property('metadataImage')}
     thumbnailFromResources = ${q(node).property('metadataThumbnail')}
     ratio = ${q(node).property('metadataRatio')}
