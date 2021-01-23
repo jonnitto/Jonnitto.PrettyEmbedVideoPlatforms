@@ -14,7 +14,7 @@
         label: i18n
         inspector:
           group: videoplatform
-          position: 10
+          position: 5
           hidden: 'ClientEval:!node.properties.videoID'
           editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
           editorOptions:
@@ -35,7 +35,7 @@
         reloadIfChanged: true
         inspector:
           group: videoplatform
-          position: 20
+          position: 6
           hidden: 'ClientEval:node.properties.platform != "youtube"'
           editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
           editorOptions:
@@ -55,5 +55,5 @@
         showInCreationDialog: true
         inspector:
           group: videoplatform
-          position: 30
+          position: 7
           editor: Neos.Neos/Inspector/Editors/TextAreaEditor
