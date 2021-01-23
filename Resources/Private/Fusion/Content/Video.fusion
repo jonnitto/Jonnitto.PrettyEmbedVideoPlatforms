@@ -136,7 +136,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
                 condition = ${props.content}
                 renderer = true
             }
-            hasPersisantResource {
+            hasPersistentResource {
                 condition = ${props.image || props.thumbnailFromResources}
                 renderer = Neos.Neos:ImageUri {
                     asset = ${props.image || props.thumbnailFromResources}
