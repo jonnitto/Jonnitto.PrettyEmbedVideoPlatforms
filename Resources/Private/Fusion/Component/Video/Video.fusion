@@ -60,8 +60,8 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
     isYouTube = ${this.platform == 'youtube'}
     look = ${this.lightbox ? 'lightbox' : 'inline'}
     url = ${this.isYouTube ? this.configuration.youtube[this.type] : this.configuration[this.platform]}
-    hasRatioAndNoLightboxWithPreserveAspectRatio = ${this.lightbox && this.preserveAspectRatio ? false : !!this.ratio}
-    forceRatio = ${Jonnitto.PrettyEmbedHelper.paddingTop(this.ratio || this.force16to9)}
+    hasLightboxWithPreserveAspectRatio = ${this.lightbox && this.preserveAspectRatio}
+    finalRatio = ${Jonnitto.PrettyEmbedHelper.paddingTop(this.ratio || this.force16to9)}
 
     previewImageClass = ${!this.poster && this.isYouTube ? 'jonnitto-prettyembed__youtube-preview' : null}
     posterFromYoutube = ${this.isYouTube && this.type == 'video' && !this.poster ? '//i.ytimg.com/vi/' + this.videoID + '/maxresdefault.jpg' : null}

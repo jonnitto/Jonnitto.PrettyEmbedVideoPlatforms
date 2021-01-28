@@ -6,17 +6,17 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Attributes) < prototype(N
             modifier = Neos.Fusion:DataStructure {
                 platform = ${props.platform}
                 iframe = true
-                ratio = ${!!props.force16to9 || !!props.hasRatioAndNoLightboxWithPreserveAspectRatio}
+                ratio = ${props.hasLightboxWithPreserveAspectRatio ? null : !!props.finalRatio}
                 look = ${props.look}
             }
         }
         href = ${String.replace(props.url.href, '%id%', props.videoID)}
         rel = 'noopener'
         target = '_blank'
-        style = ${props.force16to9 || props.hasRatioAndNoLightboxWithPreserveAspectRatio ? 'padding-top:' + props.forceRatio : null}
+        style = ${!props.hasLightboxWithPreserveAspectRatio && props.finalRatio ? 'padding-top:' + props.finalRatio : null}
         aria-label = ${props.metadataTitle}
         data-gdpr = ${props.enableGdprMessage && props.gdprMessage ? props.gdprMessage : null}
-        data-ratio = ${props.forceRatio || null}
+        data-ratio = ${props.finalRatio || null}
         data-fs = ${!!props.allowFullScreen}
         data-embed = Neos.Fusion:Case {
             isVimeo {
