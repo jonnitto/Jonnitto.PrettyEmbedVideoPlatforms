@@ -4,9 +4,9 @@
 
 Prettier embeds for your Vimeo videos and YouTube videos/playlists in [Neos CMS] - with helpful options like high-res preview images, lightbox feature, and advanced customization of embed options.
 
-| Version | Neos          |
-| ------- | ------------- |
-| 1.\*    | 4.2.\* + 5.\* |
+| Version | Neos                |
+| ------- | ------------------- |
+| 1.\*    | 4.2.\*, 5.\* + 5.\* |
 
 ## Installation
 
