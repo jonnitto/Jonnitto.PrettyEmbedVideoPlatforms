@@ -4,7 +4,19 @@ up:
     - filters:
         - type: NodeType
           settings:
-            nodeType: 'Jonnitto.PrettyEmbedYoutube:Content.YouTube'
+            nodeType: 'Jonnitto.PrettyEmbedYoutube:YouTube'
+      transformations:
+        - type: ChangeNodeType
+          settings:
+            newType: 'Jonnitto.PrettyEmbedVideoPlatforms:Content.Video'
+        - type: AddNewProperty
+          settings:
+            newPropertyName: platform
+            value: youtube
+    - filters:
+        - type: NodeType
+          settings:
+            nodeType: 'Jonnitto.PrettyEmbedYoutube:Content.Youtube'
       transformations:
         - type: ChangeNodeType
           settings:
@@ -17,6 +29,18 @@ up:
         - type: NodeType
           settings:
             nodeType: 'Jonnitto.PrettyEmbedVimeo:Content.Vimeo'
+      transformations:
+        - type: ChangeNodeType
+          settings:
+            newType: 'Jonnitto.PrettyEmbedVideoPlatforms:Content.Video'
+        - type: AddNewProperty
+          settings:
+            newPropertyName: platform
+            value: vimeo
+    - filters:
+        - type: NodeType
+          settings:
+            nodeType: 'Jonnitto.PrettyEmbedVimeo:Vimeo'
       transformations:
         - type: ChangeNodeType
           settings:
