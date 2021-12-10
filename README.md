@@ -6,7 +6,7 @@ Prettier embeds for your Vimeo videos and YouTube videos/playlists in [Neos CMS]
 
 | Version | Neos                |
 | ------- | ------------------- |
-| 1.\*    | 4.2.\*, 5.\* + 5.\* |
+| 1.\*    | 4.2.\*, 5.\* + 7.\* |
 
 ## Installation
 
