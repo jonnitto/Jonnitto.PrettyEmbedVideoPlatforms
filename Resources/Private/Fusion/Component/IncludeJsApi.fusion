@@ -1,6 +1,0 @@
-prototype(Jonnitto.PrettyEmbedVideoPlatforms:IncludeJsApi.Youtube) < prototype(Carbon.IncludeAssets:Case) {
-    mixin = 'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.IncludeJsApi'
-    alwaysInclude = false
-    appendFilter = '[platform = "youtube"]'
-    @if.set = ${Configuration.setting('Jonnitto.PrettyEmbedVideoPlatforms.enableJsApi')}
-}

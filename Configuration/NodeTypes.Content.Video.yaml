@@ -2,13 +2,11 @@
   superTypes:
     'Neos.Neos:Content': true
     'Jonnitto.PrettyEmbedHelper:Mixin.Groups': true
-    'Jonnitto.PrettyEmbedHelper:Mixin.IncludeAssets': true
     'Jonnitto.PrettyEmbedHelper:Mixin.Image': true
     'Jonnitto.PrettyEmbedHelper:Mixin.Lightbox': true
     'Jonnitto.PrettyEmbedHelper:Mixin.PreserveAspectRatio': true
     'Jonnitto.PrettyEmbedHelper:Mixin.BackendLabel': true
     'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.VideoID': true
-    'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.IncludeJsApi': true
 
     # If you want to give the editor more control,
     # you can also add also these mixins:
