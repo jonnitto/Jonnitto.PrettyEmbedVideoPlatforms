@@ -96,7 +96,6 @@ Jonnitto:
     # If this is set to a string, the element gets wrapped with a div and the class with the giving string.
     # If set to true, the element gets wrapped with a div without any class.
     # If set to false, the element get not wrapped at all
-
     wrapper: 'jonnitto-prettyembed-wrapper'
 
     # The buttons which get injected (file content) to the player.
