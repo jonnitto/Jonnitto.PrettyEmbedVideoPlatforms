@@ -21,4 +21,5 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Attributes) < prototype(N
         data-embed = Jonnitto.PrettyEmbedVideoPlatforms:Component.Attributes.Embed {
             @apply.props = ${props}
         }
+    }
 }
