@@ -14,7 +14,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
     async = true
 
     // This can used as alternative preview
-    content = null
+    content = ${null}
 
     loadImageStrategy = ${Configuration.setting('Jonnitto.PrettyEmbedVideoPlatforms.loadImageStrategy')}
     enableGdprMessage = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.enableGdprMessage')}

@@ -1,7 +1,7 @@
 prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Attributes.Embed) < prototype(Neos.Fusion:Component) {
     configuration = ${Configuration.setting('Jonnitto.PrettyEmbedVideoPlatforms')}
     url = ${this.platform == 'youtube' ? this.configuration.youtube[this.type] : this.configuration[this.platform]}
-    additionalValues = null
+    additionalValues = ${null}
 
     @of.hasNeededProperties = ${this.platform && this.videoID && Type.isArray(this.url) && Type.isString(this.url.embed)}
 

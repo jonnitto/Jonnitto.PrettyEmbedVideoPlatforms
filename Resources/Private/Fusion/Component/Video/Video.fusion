@@ -2,11 +2,11 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
     configuration = ${Configuration.setting('Jonnitto.PrettyEmbedVideoPlatforms')}
 
     // This can used as alternative preview
-    content = null
+    content = ${null}
 
     live = true
-    platform = null
-    videoID = null
+    platform = ${null}
+    videoID = ${null}
     videoID.@process.trim = ${Type.isString(value) ? String.trim(value) : value}
 
     lightbox = ${this.configuration.defaults.lightbox}
@@ -23,7 +23,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
     gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
 
     // Pass a ratio like this: ${16 / 9}
-    ratio = null
+    ratio = ${null}
 
     // If true, this get only a value if ratio is not set
     force16to9 = ${this.configuration.defaults.force16to9}
@@ -31,17 +31,17 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
 
     wrapper = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.wrapper')}
 
-    id = null
+    id = ${null}
 
-    poster = null
-    poster2x = null
-    alternativeText = null
-    origin = null
+    poster = ${null}
+    poster2x = ${null}
+    alternativeText = ${null}
+    origin = ${null}
 
     playButton = Jonnitto.PrettyEmbedHelper:Button.Play
 
     // YouTube specific
-    type = null
+    type = ${null}
     closedCaptions = ${this.configuration.defaults.closedCaptions}
     showRelated = ${this.configuration.defaults.showRelated}
 
@@ -74,7 +74,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
         <Jonnitto.PrettyEmbedHelper:Assets
             youtubeAPI={props.enableJsApi && props.platform == 'youtube'}
         />
-        <Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Youtube 
+        <Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Youtube
             @if.set={props.platform == 'youtube'}
             {...props}
             poster={props.finalPoster}
