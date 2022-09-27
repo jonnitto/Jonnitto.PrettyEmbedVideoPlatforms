@@ -27,7 +27,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
 
     // If true, this get only a value if ratio is not set
     force16to9 = ${this.configuration.defaults.force16to9}
-    force16to9.@process.setRatio = ${value ? (16 / 9) : false}
+    force16to9.@process.setRatio = ${value ? (16 / 9) : null}
 
     wrapper = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.wrapper')}
 
