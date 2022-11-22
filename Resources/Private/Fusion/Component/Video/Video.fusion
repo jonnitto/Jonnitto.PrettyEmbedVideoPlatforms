@@ -71,9 +71,6 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
     @if.hasNeededProperties = ${this.platform && this.videoID && (this.finalPoster || this.content) && (this.isYouTube ? !!this.platform : true)}
 
     renderer = afx`
-        <Jonnitto.PrettyEmbedHelper:Assets
-            youtubeAPI={props.enableJsApi && props.platform == 'youtube'}
-        />
         <Jonnitto.PrettyEmbedVideoPlatforms:Component.Video.Fragment.Youtube
             @if.set={props.platform == 'youtube'}
             {...props}
