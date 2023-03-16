@@ -19,6 +19,8 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
     loadImageStrategy = ${Configuration.setting('Jonnitto.PrettyEmbedVideoPlatforms.loadImageStrategy')}
     enableGdprMessage = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.enableGdprMessage')}
     gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
+    gdprMessageAccept = Jonnitto.PrettyEmbedHelper:GdprMessageAccept
+    gdprMessageNewWindow = Jonnitto.PrettyEmbedHelper:GdprMessageNewWindow
 
     showBackendNotification = true
 

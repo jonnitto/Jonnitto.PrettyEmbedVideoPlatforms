@@ -16,6 +16,8 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Attributes) < prototype(N
         style = ${!props.hasLightboxWithPreserveAspectRatio && props.finalRatio ? 'padding-top:' + props.finalRatio : null}
         aria-label = ${props.metadataTitle}
         data-gdpr = ${props.enableGdprMessage && props.gdprMessage ? props.gdprMessage : null}
+        data-gdpr-accept = ${props.enableGdprMessage && props.gdprMessageAccept ? props.gdprMessageAccept : null}
+        data-gdpr-new-window = ${props.enableGdprMessage && props.gdprMessageNewWindow ? props.gdprMessageNewWindow : null}
         data-ratio = ${props.finalRatio || null}
         data-fs = ${!!props.allowFullScreen}
         data-embed = Jonnitto.PrettyEmbedVideoPlatforms:Component.Attributes.Embed {

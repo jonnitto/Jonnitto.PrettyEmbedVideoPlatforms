@@ -21,6 +21,8 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
     loadImageStrategy = ${this.configuration.loadImageStrategy}
     enableGdprMessage = ${Configuration.setting('Jonnitto.PrettyEmbedHelper.enableGdprMessage')}
     gdprMessage = Jonnitto.PrettyEmbedHelper:GdprMessage
+    gdprMessageAccept = Jonnitto.PrettyEmbedHelper:GdprMessageAccept
+    gdprMessageNewWindow = Jonnitto.PrettyEmbedHelper:GdprMessageNewWindow
 
     // Pass a ratio like this: ${16 / 9}
     ratio = ${null}
