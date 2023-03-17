@@ -6,8 +6,9 @@ Prettier embeds for your Vimeo videos and YouTube videos/playlists in [Neos CMS]
 
 | Version | Neos        | Maintained |
 | ------- | ----------- | :--------: |
-| 1.\*    | 4.2.\*, > 5 |      ✓     |
-| 2.\*    | >= 5.3      |      ✓     |
+| 1.\*    | 4.2.\*, > 5 |      ✗     |
+| 2.\*    | >= 5.3      |      ✗     |
+| 3.\*    | >= 5.3      |      ✓     |
 
 ## Installation
 
@@ -53,7 +54,7 @@ Jonnitto:
     enableJsApi: true
 ```
 
-or, if you want to use the youtube-nocookie.com domain you can also edit the entries in your `Settings.yaml` file like this:
+per default, the youtube-nocookie.com domain is used for embedding YouTube videos.
 
 ```yaml
 Jonnitto:
@@ -61,10 +62,10 @@ Jonnitto:
     youtube:
       playlist:
         embed: 'https://www.youtube-nocookie.com/embed/videoseries?list=%id%'
-        href: 'https://www.youtube-nocookie.com/playlist?list=%id%'
+        href: 'https://www.youtube.com/playlist?list=%id%'
       video:
         embed: 'https://www.youtube-nocookie.com/embed/%id%'
-        href: 'https://www.youtube-nocookie.com/watch?v=%id%'
+        href: 'https://www.youtube.com/watch?v=%id%'
 ```
 
 Be aware that you need to provide the placeholder for the ID (`%id%`) of the playlist or video.
@@ -131,12 +132,8 @@ If you use SCCS in your build pipeline, you can adjust the look and feel of [`Ma
 ```scss
 // Buttons (play / pause)
 $prettyembed-button-play-size: 72px !default;
-$prettyembed-button-pause-size: round(
-  $prettyembed-button-play-size / 2
-) !default;
-$prettyembed-button-pause-margin: round(
-  $prettyembed-button-pause-size / 2
-) !default;
+$prettyembed-button-pause-size: calc($prettyembed-button-play-size / 2) !default;
+$prettyembed-button-pause-margin: calc($prettyembed-button-pause-size / 2) !default;
 $prettyembed-button-opacity: 0.9 !default;
 $prettyembed-button-scale: 0.8 !default;
 $prettyembed-button-scale-hover: 1 !default;
@@ -157,6 +154,39 @@ $prettyembed-lightbox-close-size: 30px !default;
 $prettyembed-lightbox-close-opacity: 0.65 !default;
 $prettyembed-lightbox-close-opacity-hover: 1 !default;
 $prettyembed-lightbox-close-color: #fff !default;
+$prettyembed-lightbox-backdrop-filter: blur(5px) !default;
+
+// GDPR Message
+$prettyembed-gdpr-include: true !default;
+$prettyembed-gdpr-color: #fff !default;
+$prettyembed-gdpr-font-size-breakpoint: 640px !default;
+$prettyembed-gdpr-font-size-mobile: 0.8rem !default;
+$prettyembed-gdpr-font-size: 1rem !default;
+$prettyembed-gdpr-gap: 1em !default;
+$prettyembed-gdpr-padding: 0.5em !default;
+$prettyembed-gdpr-explantation-font-size: 0.9em !default;
+$prettyembed-gdpr-explantation-max-width: 60ch !default;
+$prettyembed-gdpr-button-gap: 1em !default;
+$prettyembed-gdpr-button-padding: 0.5em 1em !default;
+$prettyembed-gdpr-button-border-radius: 0.25em !default;
+
+$prettyembed-gdpr-button-accept-color: #fff !default;
+$prettyembed-gdpr-button-accept-background-color: #16a34a !default;
+$prettyembed-gdpr-button-accept-border: 1px solid #16a34a !default;
+$prettyembed-gdpr-button-accept-color-hover: #fff !default;
+$prettyembed-gdpr-button-accept-background-color-hover: #15803d !default;
+$prettyembed-gdpr-button-accept-border-color-hover: #15803d !default;
+
+$prettyembed-gdpr-button-external-color: #fff !default;
+$prettyembed-gdpr-button-external-background-color: transparent !default;
+$prettyembed-gdpr-button-external-border: 1px solid #fff !default;
+$prettyembed-gdpr-button-external-color-hover: #000 !default;
+$prettyembed-gdpr-button-external-background-color-hover: #fff !default;
+$prettyembed-gdpr-button-external-border-color-hover: false !default;
+
+$prettyembed-gdpr-backdrop-filter: blur(5px) !default;
+$prettyembed-gdpr-overlay-color: #0b0b0b !default;
+$prettyembed-gdpr-overlay-opacity: 0.8 !default;
 ```
 
 Because all variables have the `!default` flag, the variables don't get overwritten if you declare
@@ -198,6 +228,8 @@ If you want to include the video in your node type, you should use at least the 
 If you want to use the player as a pure component, you can use the [`Jonnitto.PrettyEmbedVideoPlatforms:Component.Video`] fusion prototype.
 
 If you want to read the node properties and let the package handle all for you, you should use the [`Jonnitto.PrettyEmbedVideoPlatforms:Content.Video`] prototype. For more comfortable including in your node types, you can disable the content element wrapping with `contentElement = false`. This is useful if you want to create, for example, a text with a video node type.
+
+If you want to parse an existing content with iframes and replace them automatically, you can add [`Jonnitto.PrettyEmbedVideoPlatforms:ReplaceIframes`] with an `@process` like that: `@process.replaceIframes = Jonnitto.PrettyEmbedVideoPlatforms:ReplaceIframes`. The `content` property is per default set to `${value}`.
 
 ## Get metadata
 
@@ -245,7 +277,6 @@ If you install the PrettyEmbedCollection, the video players get grouped into an 
 [stargazers]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms/stargazers
 [subscription]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms/subscription
 [followers]: https://github.com/jonnitto/followers
-[license]: LICENSE
 [neos cms]: https://www.neos.io
 [prettyembedcollection]: https://github.com/jonnitto/Jonnitto.PrettyembedCollection
 [prettyembedvimeo]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVimeo
@@ -257,5 +288,6 @@ If you install the PrettyEmbedCollection, the video players get grouped into an 
 [settings.jonnitto.yaml]: Configuration/Settings.Jonnitto.yaml
 [`jonnitto.prettyembedvideoplatforms:component.video`]: Resources/Private/Fusion/Component/Video.fusion
 [`jonnitto.prettyembedvideoplatforms:content.video`]: Resources/Private/Fusion/Content/Video.fusion
+[`jonnitto.prettyembedvideoplatforms:replaceiframes`]: Resources/Private/Fusion/ReplaceIframes.fusion
 [sitegeist.slipstream]: https://github.com/sitegeist/Sitegeist.Slipstream
 [`main.scss`]: https://github.com/jonnitto/Jonnitto.PrettyEmbedHelper/blob/master/Resources/Private/Assets/Main.scss
