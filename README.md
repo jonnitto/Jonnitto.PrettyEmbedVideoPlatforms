@@ -46,7 +46,7 @@ All packages from the PrettyEmbed series have the benefit of a better frontend p
 
 #### JS API / Usage of youtube-nocookie.com
 
-If you want to use the JavaScript API from youtube (e.g., for tracking), you have to enable set `enableJsApi` to `true`.
+If you want to use the JavaScript API from YouTube or Vimeo (e.g., for tracking), you have to enable set `enableJsApi` to `true`.
 
 ```yaml
 Jonnitto:
