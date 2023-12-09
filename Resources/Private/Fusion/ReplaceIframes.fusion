@@ -6,10 +6,9 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:ReplaceIframes) {
 
     // This property is used internally by `ReplaceIframesImplementation` to render each YouTube iframe.
     // It can be modified to change behaviour for all rendered YouTube items.
-    itemYoutubeRenderer = Jonnitto.PrettyEmbedVideoPlatforms:Component.Video {
+    itemYoutubeRenderer = Jonnitto.PrettyEmbed:Presentation.YouTube {
         type = ${type}
         videoID = ${videoID}
-        platform = 'youtube'
         poster = ${poster}
 
         // Set this to replace the preview image
@@ -18,10 +17,9 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:ReplaceIframes) {
 
     // This property is used internally by `ReplaceIframesImplementation` to render each Vimeo iframe.
     // It can be modified to change behaviour for all rendered Vimeo items.
-    itemVimeoRenderer = Jonnitto.PrettyEmbedVideoPlatforms:Component.Video {
+    itemVimeoRenderer = Jonnitto.PrettyEmbed:Presentation.Vimeo {
         videoID = ${videoID}
         type = 'video'
-        platform = 'vimeo'
         poster = ${poster}
 
         // Set this to replace the preview image

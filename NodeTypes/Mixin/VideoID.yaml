@@ -1,13 +1,7 @@
 'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.VideoID':
   abstract: true
   superTypes:
-    'Jonnitto.PrettyEmbedHelper:Mixin.Force16to9': true
-    'Jonnitto.PrettyEmbedHelper:Mixin.Metadata.ID': true
-    'Jonnitto.PrettyEmbedHelper:Mixin.Metadata.Title': true
-    'Jonnitto.PrettyEmbedHelper:Mixin.Metadata.Ratio': true
-    'Jonnitto.PrettyEmbedHelper:Mixin.Metadata.Image': true
-    'Jonnitto.PrettyEmbedHelper:Mixin.Metadata.Thumbnail': true
-    'Jonnitto.PrettyEmbedHelper:Mixin.Metadata.Duration': true
+    'Jonnitto.PrettyEmbedHelper:Mixin.Metadata': true
   properties:
     platform:
       type: string
