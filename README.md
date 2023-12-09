@@ -8,7 +8,8 @@ Prettier embeds for your Vimeo videos and YouTube videos/playlists in [Neos CMS]
 | ------- | ----------- | :--------: |
 | 1.\*    | 4.2.\*, > 5 |      ✗     |
 | 2.\*    | >= 5.3      |      ✗     |
-| 3.\*    | >= 5.3      |      ✓     |
+| 3.\*    | >= 5.3      |      ✗     |
+| 4.\*    | >= 7.3      |      ✓     |
 
 ## Installation
 
@@ -35,74 +36,147 @@ The `--no-update` command prevent the automatic update of the dependencies. Afte
 | Preview image                      |         ✓          |        |
 | Lightbox included                  |         ✓          |        |
 | Preview image (for videos)         |         ✓          |        |
-| Javascript API                     |                    |   ✓    |
+| Javascript API                     |         ✓          |   ✓    |
 | Filesize (JS & CSS)                |      smaller       | bigger |
 
 All packages from the PrettyEmbed series have the benefit of a better frontend performance since the player gets only loaded on request. So, no iframe/video gets loaded until the user wants to watch a video.
 
 ## Customization
 
-### [Settings.Jonnitto.yaml]
+### Global settings for the whole PrettyEmbed series
 
-#### JS API / Usage of youtube-nocookie.com
-
-If you want to use the JavaScript API from YouTube or Vimeo (e.g., for tracking), you have to enable set `enableJsApi` to `true`.
+The settings will be set globally from the [PrettyEmbedHelper] package. These are the default settings:
 
 ```yaml
 Jonnitto:
-  PrettyEmbedVideoPlatforms:
-    enableJsApi: true
-```
+  PrettyEmbed:
+    # If you have your own AlpineJS in your setup, you can disable the check here. Alpine must be an global variable
+    includeAlpineJsCheck: true
 
-per default, the youtube-nocookie.com domain is used for embedding YouTube videos.
-
-```yaml
-Jonnitto:
-  PrettyEmbedVideoPlatforms:
-    youtube:
-      playlist:
-        embed: 'https://www.youtube-nocookie.com/embed/videoseries?list=%id%'
-        href: 'https://www.youtube.com/playlist?list=%id%'
-      video:
-        embed: 'https://www.youtube-nocookie.com/embed/%id%'
-        href: 'https://www.youtube.com/watch?v=%id%'
-```
-
-Be aware that you need to provide the placeholder for the ID (`%id%`) of the playlist or video.
-
-#### Global settings for the whole PrettyEmbed series
-
-Some settings will be set globally from the [PrettyEmbedHelper] package. These are the default settings:
-
-```yaml
-Jonnitto:
-  PrettyEmbedHelper:
-    # If you want to use your own assets, set this to false (Backend.js and Backend.css will be always be included in the backend)
+    # If you want to use your own assets, set this to false (Backend.Video.css ignores this setting)
     includeAssets:
       css: true
       js: true
 
-    # If you want to save the duration of YouTube videos and playlists into the
-    # property metadataDuration you have to add a API key from YouTube Data API v3
-    # You can create this key on https://console.cloud.google.com/
-    youtubeApiKey: null
-
-    # For Vimeo and Youtube you can enable here the option the show a confirm dialog
-    # that external content get loaded and the user may be tracked
-    enableGdprMessage: false
-
-    # This is the maximum width of a custom preview image
-    maximumWidth: 1920
+    # Can be `lazy`, `eager` or `null`
+    loadImageStrategy: lazy
 
     # If this is set to a string, the element gets wrapped with a div and the class with the giving string.
     # If set to true, the element gets wrapped with a div without any class.
     # If set to false, the element get not wrapped at all
-    wrapper: 'jonnitto-prettyembed-wrapper'
+    wrapper: false
 
     # The buttons which get injected (file content) to the player.
+    # You can also overwrite the button Fusion components
     button:
       play: 'resource://Jonnitto.PrettyEmbedHelper/Public/Assets/PlayButton.svg'
       pause: 'resource://Jonnitto.PrettyEmbedHelper/Public/Assets/PauseButton.svg'
+
+    # This is the maximum width of a custom preview image
+    maximumWidth: 1920
+
+    # Settings for the vimeo player
+    Vimeo:
+      # Set to `false` to disable the gdpr message, set to `popup` open the video in a new window or set to `true` to show the message in the player
+      gdprHandling: true
+
+      # The hexadecimal color value of the playback controls, which is normally 00ADEF.
+      color: false
+
+      # Show the controls or not
+      controls: true
+
+      # Whether the player is in background mode, which hides the playback controls, enables autoplay, and loops the video.
+      background: false
+
+      # Whether to restart the video automatically after reaching the end.
+      loop: false
+
+      # Should the video be opened on a lightbox? Per default this is set via the node properties
+      lightbox: false
+
+      # When the lightbox is set, should the preview image preserve his aspect ratio? Per default this is set via the node properties
+      preserveAspectRatio: true
+
+      # If no aspect ratio can be calcualted from the oembed service, you have the possibility to force the aspect ratio 16:9. Per default this is set via the node properties
+      force16to9: true
+
+    YouTube:
+      # Set to false to disable the gdpr message, set to popup open the video in a new window or set to true to show the message in the player
+      gdprHandling: true
+
+      # If you want to save the duration of YouTube videos and playlists into the
+      # property metadataDuration you have to add a API key from YouTube Data API v3
+      # You can create this key on https://console.cloud.google.com/
+      # This key is only used in the backend
+      apiKey: null
+
+      # Show the controls or not
+      controls: true
+
+      # Whether to restart the video automatically after reaching the end.
+      loop: false
+
+      # Should the video be opened on a lightbox? Per default this is set via the node properties
+      lightbox: false
+
+      # When the lightbox is set, should the preview image preserve his aspect ratio? Per default this is set via the node properties
+      preserveAspectRatio: true
+
+      # If no aspect ratio can be calcualted from the oembed service, you have the possibility to force the aspect ratio 16:9. Per default this is set via the node properties
+      force16to9: true
+
+    Video:
+      # If true, the browser will offer controls to allow the user to control
+      # video playback, including volume, seeking, and pause/resume playback.
+      controls: true
+
+      # Should the video be opened on a lightbox? Per default this is set via the node properties
+      lightbox: false
+
+      # If true, the video automatically begins to play back as soon
+      # as it can do so without stopping to finish loading the data.
+      autoplay: false
+
+      # If true, the browser will automatically seek back
+      # to the start upon reaching the end of the video.
+      loop: false
+
+      # Whether the video is muted upon loading. Set automatically to true if autoplay is enabled
+      muted: false
+
+      # This enumerated attribute is intended to provide a hint to the browser about what
+      # the author thinks will lead to the best user experience with regards to what content
+      # is loaded before the video is played. It may have one of the following values:
+      #  - none       Indicates that the video should not be preloaded.
+      #  - metadata   Indicates that only video metadata (e.g. length) is fetched.
+      #  - auto       Indicates that the whole video file can be downloaded, even if the user is not expected to use it
+      preload: none
+
+      # https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-crossorigin
+      # anonymous || use-credentials || true || false
+      crossorigin: false
+
+    Audio:
+      # If true, the browser will offer controls to allow the user to control
+      # audio playback, including volume, seeking, and pause/resume playback.
+      controls: true
+
+      # If true, the browser will automatically seek back
+      # to the start upon reaching the end of the audio.
+      loop: false
+
+      # This enumerated attribute is intended to provide a hint to the browser about what
+      # the author thinks will lead to the best user experience with regards to what content
+      # is loaded before the audio is played. It may have one of the following values:
+      #  - none       Indicates that the audio should not be preloaded.
+      #  - metadata   Indicates that the browser should load only metadata when the page loads
+      #  - auto       Indicates that the whole audio file can be downloaded, even if the user is not expected to use it
+      preload: metadata
+
+      # https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio#attr-crossorigin
+      # anonymous || use-credentials || true || false
+      crossorigin: false
 ```
 
 #### Disable inclusion of the CSS and/or JS files
@@ -113,7 +187,7 @@ If you want to load your own CSS, you can disable it like that:
 
 ```yaml
 Jonnitto:
-  PrettyEmbedHelper:
+  PrettyEmbed:
     includeAssets:
       css: false
 ```
@@ -122,7 +196,7 @@ If you want to load your own Javascript, you can disable it like that:
 
 ```yaml
 Jonnitto:
-  PrettyEmbedHelper:
+  PrettyEmbed:
     includeAssets:
       js: false
 ```
@@ -194,15 +268,15 @@ them before you import [`Main.scss`]. Like that, most of the frequent adjustment
 
 ### NodeTypes and Mixins
 
-If you want to customize the default settings, take a look at the [Settings.Jonnitto.yaml] file.
-If no node property is given, these default values will be taken. If you, for example, want to let
-the editor choose if the video is allowed to play the video in fullscreen or not, you can activate
-the mixin in your Configuration folder like this:
+If you want to customize the default settings, take a look at the `Settings.Jonnitto.yaml` from [PrettyEmbedHelper]
+file. If no node property is given, these default values will be taken. If you, for example, want to let the editor
+choose if the video is has the controls from the platform, you can activate the mixin in your file where you override
+node types like that:
 
 ```yaml
 'Jonnitto.PrettyEmbedVideoPlatforms:Content.Video':
   superTypes:
-    'Jonnitto.PrettyEmbedHelper:Mixin.AllowFullScreen': true
+    'Jonnitto.PrettyEmbedHelper:Mixin.Controls': true
 ```
 
 These are the available mixins:
@@ -218,8 +292,6 @@ These are the available mixins:
 | `Helper:Mixin.AllowFullScreen`                           | Allow fullscreen or not                                                     |    `true`     |                     |
 | `Helper:Mixin.Loop`                                      | Loop the video                                                              |    `false`    |                     |
 | `Helper:Mixin.Controls`                                  | Show the controls                                                           |    `true`     |                     |
-| `PrettyEmbedVideoPlatforms:Mixin.Youtube.ClosedCaptions` | Show captions                                                               |    `false`    |                     |
-| `PrettyEmbedVideoPlatforms:Mixin.Youtube.ShowRelated`    | If `false`, show only related videos that are from the same channel         |    `false`    |                     |
 
 If you want to include the video in your node type, you should use at least the mixin `Jonnitto.PrettyEmbedVideoPlatforms:Mixin.VideoID`. This add besides the `videoID` property also the properties for the metadata fetched from the oembed service. This mixin is also necessary to fetch/update the data from the service.
 
@@ -233,7 +305,7 @@ If you want to parse existing content with iframes and replace them automaticall
 
 ## Get metadata
 
-To get the metadata, you can run the flow command `./flow prettyembed:metadata`. This command search for nodes with the `VideoID` mixin, and tries to get the metadata. If for some reason, it is not possible to fetch the metadata (Perhaps the video is set to private, or the ID does not exist), you will get a table with the name of the node type, the type, the video ID and the node path.  
+To get the metadata, you can run the flow command `./flow prettyembed:metadata`. This command search for nodes with the `VideoID` mixin, and tries to get the metadata. If for some reason, it is not possible to fetch the metadata (Perhaps the video is set to private, or the ID does not exist), you will get a table with the name of the node type, the type, the video ID and the node path.
 The task comes with two options:
 
 - `--workspace` Workspace name, default is 'live'
@@ -244,10 +316,10 @@ To get an overview of the options in the cli, you can run `./flow help prettyemb
 ## Merge PrettyEmbedYoutube and PrettyEmbedVimeo
 
 If you want existing nodes from [PrettyEmbedYoutube] and [PrettyEmbedVimeo] use this package,
-you have to run following command in your cli:  
+you have to run following command in your cli:
 `./flow node:migrate --version 20200420033756`
 
-After this migration you have to flush your frontend cache:  
+After this migration you have to flush your frontend cache:
 `./flow cache:flushone --identifier Neos_Fusion_Content`
 
 ## PrettyEmbedCollection
@@ -285,7 +357,6 @@ If you install the PrettyEmbedCollection, the video players get grouped into an 
 [prettyembedvideo]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideo
 [prettyembedvideoplatforms]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms
 [jonnitto.plyr]: https://github.com/jonnitto/Jonnitto.Plyr
-[settings.jonnitto.yaml]: Configuration/Settings.Jonnitto.yaml
 [`jonnitto.prettyembedvideoplatforms:component.video`]: Resources/Private/Fusion/Component/Video.fusion
 [`jonnitto.prettyembedvideoplatforms:content.video`]: Resources/Private/Fusion/Content/Video.fusion
 [`jonnitto.prettyembedvideoplatforms:replaceiframes`]: Resources/Private/Fusion/ReplaceIframes.fusion
