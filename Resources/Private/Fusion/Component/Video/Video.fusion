@@ -38,7 +38,6 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Video) < prototype(Neos.F
     poster = ${null}
     poster2x = ${null}
     alternativeText = ${null}
-    origin = ${null}
 
     playButton = Jonnitto.PrettyEmbedHelper:Button.Play
 

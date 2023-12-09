@@ -32,14 +32,6 @@ class ReplaceIframesImplementation extends AbstractFusionObject
     }
 
     /**
-     * @return string
-     */
-    public function getOrigin(): string
-    {
-        return (string) $this->fusionValue('origin');
-    }
-
-    /**
      * Render Replace embeded iframes with the pretty embeded markup
      *
      * @return string
@@ -100,7 +92,6 @@ class ReplaceIframesImplementation extends AbstractFusionObject
             'videoID' => $videoID,
             'type' => $type,
             'poster' => $poster,
-            'origin' =>  $this->getOrigin(),
         ]);
         $html = $this->runtime->render($this->path . '/itemYoutubeRenderer');
         $this->runtime->popContext();

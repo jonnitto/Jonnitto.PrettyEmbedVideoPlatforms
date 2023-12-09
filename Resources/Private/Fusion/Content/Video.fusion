@@ -125,7 +125,6 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
         These properties are already defined in Jonnitto.PrettyEmbedHelper:Content
         - maximumWidth
         - wrapper
-        - origin
         - image
     */
 

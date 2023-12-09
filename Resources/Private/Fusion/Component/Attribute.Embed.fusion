@@ -40,7 +40,6 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Component.Attributes.Embed) < proto
                 closedCaptions   = ${props.closedCaptions ? '&cc_load_policy=1' : ''}
                 showRelated      = ${props.showRelated ? '&rel=1' : '&rel=0'}
                 fullscreen       = ${props.allowFullScreen ? '' : '&fs=0'}
-                origin           = ${props.origin ? '&origin=' + props.origin : ''}
                 additionalValues = ${props.additionalValues ? '&' + props.additionalValues : ''}
             }
         }

@@ -4,19 +4,12 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:ReplaceIframes) {
     // The content to parse
     content = ${value}
 
-    origin = Neos.Neos:NodeUri {
-        node = ${site}
-        absolute = true
-        @process.onlyTheDomain = ${String.pregMatch(value, '(https?:\/\/[^\/]+)')[0]}
-    }
-
     // This property is used internally by `ReplaceIframesImplementation` to render each YouTube iframe.
     // It can be modified to change behaviour for all rendered YouTube items.
     itemYoutubeRenderer = Jonnitto.PrettyEmbedVideoPlatforms:Component.Video {
         type = ${type}
         videoID = ${videoID}
         platform = 'youtube'
-        origin = ${origin}
         poster = ${poster}
 
         // Set this to replace the preview image
