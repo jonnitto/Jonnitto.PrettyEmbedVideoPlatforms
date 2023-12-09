@@ -2,7 +2,6 @@
 
 namespace Jonnitto\PrettyEmbedVideoPlatforms\FusionObjects;
 
-use Jonnitto\PrettyEmbedHelper\Service\ApiService;
 use Jonnitto\PrettyEmbedHelper\Service\ParseIDService;
 use Jonnitto\PrettyEmbedHelper\Service\YoutubeService;
 use Jonnitto\PrettyEmbedHelper\Utility\Utility;
@@ -82,12 +81,7 @@ class ReplaceIframesImplementation extends AbstractFusionObject
 
     protected function buildYoutube(string $videoID, string $type): string
     {
-        $data = $this->youtubeService->getBestPossibleYoutubeImage($videoID);
-        $poster = null;
-        if (isset($data)) {
-            $utility = new Utility();
-            $poster = $utility->removeProtocolFromUrl($data['image'] ?? null);
-        }
+        $poster = Utility::youtubeThumbnail($videoID);
         $this->runtime->pushContextArray([
             'videoID' => $videoID,
             'type' => $type,
@@ -100,14 +94,7 @@ class ReplaceIframesImplementation extends AbstractFusionObject
 
     protected function buildVimeo(string $videoID): string
     {
-        $api = new ApiService();
-        $data = $api->vimeo($videoID);
-        $poster = null;
-        if (isset($data)) {
-            $utility = new Utility();
-            $poster = $utility->removeProtocolFromUrl($data['thumbnail_url'] ?? null);
-        }
-
+        $poster = Utility::vimeoThumbnail($videoID);
         $this->runtime->pushContextArray([
             'videoID' => $videoID,
             'poster' => $poster
