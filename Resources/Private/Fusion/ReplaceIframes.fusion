@@ -10,17 +10,21 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:ReplaceIframes) {
         type = ${type}
         videoID = ${videoID}
         poster = ${poster}
+        href = ${href}
+        embedHref = ${embedHref}
 
         // Set this to replace the preview image
         content = null
+        gdprHandling = false
     }
 
     // This property is used internally by `ReplaceIframesImplementation` to render each Vimeo iframe.
     // It can be modified to change behaviour for all rendered Vimeo items.
     itemVimeoRenderer = Jonnitto.PrettyEmbed:Presentation.Vimeo {
         videoID = ${videoID}
-        type = 'video'
         poster = ${poster}
+        href = ${href}
+        embedHref = ${embedHref}
 
         // Set this to replace the preview image
         content = null

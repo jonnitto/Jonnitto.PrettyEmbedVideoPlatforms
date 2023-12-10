@@ -186,8 +186,8 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
                     poster = ${props.poster}
                     poster2x = ${props.poster2x}
                     posterSrcset = ${props.posterSrcset}
-                    videoId = ${props.type == 'video' ? props.videoID : null}
-                    playlistId = ${props.type == 'playlist' ? props.videoID : null}
+                    videoID = ${props.type == 'video' ? props.videoID : null}
+                    playlistID = ${props.type == 'playlist' ? props.videoID : null}
                     href = ${props.href}
                     embedHref = ${props.embedHref}
                 }
@@ -210,7 +210,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
                     poster = ${props.poster}
                     poster2x = ${props.poster2x}
                     posterSrcset = ${props.posterSrcset}
-                    videoId = ${props.videoID}
+                    videoID = ${props.videoID}
                     color = ${props.color}
                     href = ${props.href}
                     embedHref = ${props.embedHref}

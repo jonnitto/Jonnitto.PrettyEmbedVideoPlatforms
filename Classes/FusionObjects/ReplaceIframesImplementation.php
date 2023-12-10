@@ -82,25 +82,33 @@ class ReplaceIframesImplementation extends AbstractFusionObject
     protected function buildYoutube(string $videoID, string $type): string
     {
         $poster = Utility::youtubeThumbnail($videoID);
+        $href = Utility::youtubeHref($videoID, $type, false);
+        $embedHref = Utility::youtubeHref($videoID, $type, true);
         $this->runtime->pushContextArray([
             'videoID' => $videoID,
             'type' => $type,
             'poster' => $poster,
+            'href' => $href,
+            'embedHref' => $embedHref,
         ]);
         $html = $this->runtime->render($this->path . '/itemYoutubeRenderer');
         $this->runtime->popContext();
-        return $html;
+        return $html ?? '';
     }
 
     protected function buildVimeo(string $videoID): string
     {
         $poster = Utility::vimeoThumbnail($videoID);
+        $href = Utility::vimeoHref($videoID, false);
+        $embedHref = Utility::vimeoHref($videoID, true);
         $this->runtime->pushContextArray([
             'videoID' => $videoID,
-            'poster' => $poster
+            'poster' => $poster,
+            'href' => $href,
+            'embedHref' => $embedHref,
         ]);
         $html = $this->runtime->render($this->path . '/itemVimeoRenderer');
         $this->runtime->popContext();
-        return $html;
+        return $html ?? '';
     }
 }
