@@ -15,7 +15,6 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:ReplaceIframes) {
 
         // Set this to replace the preview image
         content = null
-        gdprHandling = false
     }
 
     // This property is used internally by `ReplaceIframesImplementation` to render each Vimeo iframe.
