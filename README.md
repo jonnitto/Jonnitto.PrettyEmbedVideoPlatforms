@@ -2,14 +2,19 @@
 
 # Jonnitto.PrettyEmbedVideoPlatforms
 
-Prettier embeds for your Vimeo videos and YouTube videos/playlists in [Neos CMS] - with helpful options like high-res preview images, lightbox feature, and advanced customization of embed options.
+Prettier embeds for your Vimeo videos and YouTube videos/playlists in [Neos CMS] - with helpful options like high-res
+preview images, lightbox feature, and advanced customization of embed options.
+
+![Screenshot]
 
 | Version | Neos        | Maintained |
 | ------- | ----------- | :--------: |
-| 1.\*    | 4.2.\*, > 5 |      ✗     |
-| 2.\*    | >= 5.3      |      ✗     |
-| 3.\*    | >= 5.3      |      ✗     |
-| 4.\*    | >= 7.3      |      ✓     |
+| 1.\*    | 4.2.\*, > 5 |     ✗      |
+| 2.\*    | >= 5.3      |     ✗      |
+| 3.\*    | >= 5.3      |     ✗      |
+| 6.\*    | >= 7.3      |     ✓      |
+
+> The version jump was made to have all packages from the PrettyEmbed series on the same number
 
 ## Installation
 
@@ -45,7 +50,7 @@ All packages from the PrettyEmbed series have the benefit of a better frontend p
 
 ### Global settings for the whole PrettyEmbed series
 
-The settings will be set globally from the [PrettyEmbedHelper] package. These are the default settings:
+The settings will be set globally from the [PrettyEmbedHelper] package. These are the default settings for this package:
 
 ```yaml
 Jonnitto:
@@ -53,7 +58,7 @@ Jonnitto:
     # If you have your own AlpineJS in your setup, you can disable the check here. Alpine must be an global variable
     includeAlpineJsCheck: true
 
-    # If you want to use your own assets, set this to false (Backend.Video.css ignores this setting)
+    # If you want to use your own assets, set this to false
     includeAssets:
       css: true
       js: true
@@ -69,8 +74,8 @@ Jonnitto:
     # The buttons which get injected (file content) to the player.
     # You can also overwrite the button Fusion components
     button:
-      play: 'resource://Jonnitto.PrettyEmbedHelper/Public/Assets/PlayButton.svg'
-      pause: 'resource://Jonnitto.PrettyEmbedHelper/Public/Assets/PauseButton.svg'
+      play: "resource://Jonnitto.PrettyEmbedHelper/Public/Assets/PlayButton.svg"
+      pause: "resource://Jonnitto.PrettyEmbedHelper/Public/Assets/PauseButton.svg"
 
     # This is the maximum width of a custom preview image
     maximumWidth: 1920
@@ -98,8 +103,8 @@ Jonnitto:
       # When the lightbox is set, should the preview image preserve his aspect ratio? Per default this is set via the node properties
       preserveAspectRatio: true
 
-      # If no aspect ratio can be calcualted from the oembed service, you have the possibility to force the aspect ratio 16:9. Per default this is set via the node properties
-      force16to9: true
+      # If no aspect ratio can be calcualted from the oembed service, you have the possibility to set a fallback aspect ratio.
+      fallbackAspectRatio: "16 / 9"
 
     YouTube:
       # Set to false to disable the gdpr message, set to popup open the video in a new window or set to true to show the message in the player
@@ -123,60 +128,8 @@ Jonnitto:
       # When the lightbox is set, should the preview image preserve his aspect ratio? Per default this is set via the node properties
       preserveAspectRatio: true
 
-      # If no aspect ratio can be calcualted from the oembed service, you have the possibility to force the aspect ratio 16:9. Per default this is set via the node properties
-      force16to9: true
-
-    Video:
-      # If true, the browser will offer controls to allow the user to control
-      # video playback, including volume, seeking, and pause/resume playback.
-      controls: true
-
-      # Should the video be opened on a lightbox? Per default this is set via the node properties
-      lightbox: false
-
-      # If true, the video automatically begins to play back as soon
-      # as it can do so without stopping to finish loading the data.
-      autoplay: false
-
-      # If true, the browser will automatically seek back
-      # to the start upon reaching the end of the video.
-      loop: false
-
-      # Whether the video is muted upon loading. Set automatically to true if autoplay is enabled
-      muted: false
-
-      # This enumerated attribute is intended to provide a hint to the browser about what
-      # the author thinks will lead to the best user experience with regards to what content
-      # is loaded before the video is played. It may have one of the following values:
-      #  - none       Indicates that the video should not be preloaded.
-      #  - metadata   Indicates that only video metadata (e.g. length) is fetched.
-      #  - auto       Indicates that the whole video file can be downloaded, even if the user is not expected to use it
-      preload: none
-
-      # https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-crossorigin
-      # anonymous || use-credentials || true || false
-      crossorigin: false
-
-    Audio:
-      # If true, the browser will offer controls to allow the user to control
-      # audio playback, including volume, seeking, and pause/resume playback.
-      controls: true
-
-      # If true, the browser will automatically seek back
-      # to the start upon reaching the end of the audio.
-      loop: false
-
-      # This enumerated attribute is intended to provide a hint to the browser about what
-      # the author thinks will lead to the best user experience with regards to what content
-      # is loaded before the audio is played. It may have one of the following values:
-      #  - none       Indicates that the audio should not be preloaded.
-      #  - metadata   Indicates that the browser should load only metadata when the page loads
-      #  - auto       Indicates that the whole audio file can be downloaded, even if the user is not expected to use it
-      preload: metadata
-
-      # https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio#attr-crossorigin
-      # anonymous || use-credentials || true || false
-      crossorigin: false
+      # If no aspect ratio can be calcualted from the oembed service, you have the possibility to set a fallback aspect ratio.
+      fallbackAspectRatio: "16 / 9"
 ```
 
 #### Disable inclusion of the CSS and/or JS files
@@ -206,8 +159,12 @@ If you use SCCS in your build pipeline, you can adjust the look and feel of [`Ma
 ```scss
 // Buttons (play / pause)
 $prettyembed-button-play-size: 72px !default;
-$prettyembed-button-pause-size: calc($prettyembed-button-play-size / 2) !default;
-$prettyembed-button-pause-margin: calc($prettyembed-button-pause-size / 2) !default;
+$prettyembed-button-pause-size: calc(
+  $prettyembed-button-play-size / 2
+) !default;
+$prettyembed-button-pause-margin: calc(
+  $prettyembed-button-pause-size / 2
+) !default;
 $prettyembed-button-opacity: 0.9 !default;
 $prettyembed-button-scale: 0.8 !default;
 $prettyembed-button-scale-hover: 1 !default;
@@ -274,38 +231,44 @@ choose if the video is has the controls from the platform, you can activate the 
 node types like that:
 
 ```yaml
-'Jonnitto.PrettyEmbedVideoPlatforms:Content.Video':
+"Jonnitto.PrettyEmbedVideoPlatforms:Content.Video":
   superTypes:
-    'Jonnitto.PrettyEmbedHelper:Mixin.Controls': true
+    "Jonnitto.PrettyEmbedHelper:Mixin.Controls": true
 ```
 
 These are the available mixins:
 
-| Mixin name (Prefix: `Jonnitto.PrettyEmbed`)              | Description                                                                 | Default value | Enabled per default |
-| -------------------------------------------------------- | --------------------------------------------------------------------------- | :-----------: | :-----------------: |
-| `Helper:Mixin.Groups`                                    | Enables the inspector groups                                                |               |          ✓          |
-| `Helper:Mixin.Image`                                     | Add the preview image property                                              |               |          ✓          |
-| `Helper:Mixin.Lightbox`                                  | Open the video in a lightbox                                                |    `false`    |          ✓          |
-| `Helper:Mixin.PreserveAspectRatio`                       | If the lightbox is active, the preview image can preserve his aspect ratio. |    `true`     |          ✓          |
-| `Helper:Mixin.BackendLabel`                              | Read the title of the video and set this as label in the content tree       |               |          ✓          |
-| `VideoPlatforms:Mixin.VideoID`                           | Let the user enter the video ID or the URL                                  |               |          ✓          |
-| `Helper:Mixin.AllowFullScreen`                           | Allow fullscreen or not                                                     |    `true`     |                     |
-| `Helper:Mixin.Loop`                                      | Loop the video                                                              |    `false`    |                     |
-| `Helper:Mixin.Controls`                                  | Show the controls                                                           |    `true`     |                     |
+| Mixin name (Prefix: `Jonnitto.PrettyEmbed`) | Description                                                                 | Default value | Enabled per default |
+| ------------------------------------------- | --------------------------------------------------------------------------- | :-----------: | :-----------------: |
+| `Helper:Mixin.Groups`                       | Enables the inspector groups                                                |               |          ✓          |
+| `Helper:Mixin.Image`                        | Add the preview image property                                              |               |          ✓          |
+| `Helper:Mixin.Lightbox`                     | Open the video in a lightbox                                                |    `false`    |          ✓          |
+| `Helper:Mixin.PreserveAspectRatio`          | If the lightbox is active, the preview image can preserve his aspect ratio. |    `true`     |          ✓          |
+| `Helper:Mixin.BackendLabel`                 | Read the title of the video and set this as label in the content tree       |               |          ✓          |
+| `VideoPlatforms:Mixin.VideoID`              | Let the user enter the video ID or the URL                                  |               |          ✓          |
+| `Helper:Mixin.Loop`                         | Loop the video                                                              |    `false`    |                     |
+| `Helper:Mixin.Controls`                     | Show the controls                                                           |    `true`     |                     |
 
 If you want to include the video in your node type, you should use at least the mixin `Jonnitto.PrettyEmbedVideoPlatforms:Mixin.VideoID`. This add besides the `videoID` property also the properties for the metadata fetched from the oembed service. This mixin is also necessary to fetch/update the data from the service.
 
 ### Fusion
 
-If you want to use the player as a pure component, you can use the [`Jonnitto.PrettyEmbedVideoPlatforms:Component.Video`] fusion prototype.
+If you want to use the player as a pure component, you can use the `Jonnitto.PrettyEmbed:Presentation.YouTube` or
+`Jonnitto.PrettyEmbed:Presentation.Vimeo` Fusion prototype.
 
 If you want to read the node properties and let the package handle all for you, you should use the [`Jonnitto.PrettyEmbedVideoPlatforms:Content.Video`] prototype. For more comfortable including in your node types, you can disable the content element wrapping with `contentElement = false`. This is useful if you want to create, for example, a text with a video node type.
 
-If you want to parse existing content with iframes and replace them automatically, you can add [`Jonnitto.PrettyEmbedVideoPlatforms:ReplaceIframes`] with an `@process` like that: `@process.replaceIframes = Jonnitto.PrettyEmbedVideoPlatforms:ReplaceIframes`. The `content` property is per default set to `${value}`.
+If you want to parse existing content with iframes and replace them automatically, you can add
+ [`Jonnitto.PrettyEmbed:ReplaceIframes`] with an `@process` like that:
+ `@process.replaceIframes = Jonnitto.PrettyEmbed:ReplaceIframes`. The `content` property is per default set to `${value}`.
 
 ## Get metadata
 
-To get the metadata, you can run the flow command `./flow prettyembed:metadata`. This command search for nodes with the `VideoID` mixin, and tries to get the metadata. If for some reason, it is not possible to fetch the metadata (Perhaps the video is set to private, or the ID does not exist), you will get a table with the name of the node type, the type, the video ID and the node path.
+To get the metadata, you can run the flow command `./flow prettyembed:metadata`. This command search for nodes with
+the `VideoID` mixin, and tries to get the metadata. If for some reason, it is not possible to fetch the metadata
+(Perhaps the video is set to private, or the ID does not exist), you will get a table with the name of the node type,
+the type, the video ID and the node path.
+
 The task comes with two options:
 
 - `--workspace` Workspace name, default is 'live'
@@ -331,6 +294,7 @@ This package is member of the [PrettyEmbedCollection] which contains following p
 
 If you install the PrettyEmbedCollection, the video players get grouped into an own group in the node-inspector; otherwise, they will be in the default group.
 
+[screenshot]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms/assets/4510166/adb7571a-3563-45cc-9318-ca27654b720d
 [packagist]: https://packagist.org/packages/jonnitto/prettyembedvideoplatforms
 [latest stable version]: https://poser.pugx.org/jonnitto/prettyembedvideoplatforms/v/stable
 [total downloads]: https://poser.pugx.org/jonnitto/prettyembedvideoplatforms/downloads
@@ -357,8 +321,6 @@ If you install the PrettyEmbedCollection, the video players get grouped into an 
 [prettyembedvideo]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideo
 [prettyembedvideoplatforms]: https://github.com/jonnitto/Jonnitto.PrettyEmbedVideoPlatforms
 [jonnitto.plyr]: https://github.com/jonnitto/Jonnitto.Plyr
-[`jonnitto.prettyembedvideoplatforms:component.video`]: Resources/Private/Fusion/Component/Video.fusion
-[`jonnitto.prettyembedvideoplatforms:content.video`]: Resources/Private/Fusion/Content/Video.fusion
-[`jonnitto.prettyembedvideoplatforms:replaceiframes`]: Resources/Private/Fusion/ReplaceIframes.fusion
+[`jonnitto.prettyembedvideoplatforms:content.video`]: Resources/Private/Fusion/Content.Video.fusion
 [sitegeist.slipstream]: https://github.com/sitegeist/Sitegeist.Slipstream
 [`main.scss`]: https://github.com/jonnitto/Jonnitto.PrettyEmbedHelper/blob/master/Resources/Private/Assets/Main.scss
