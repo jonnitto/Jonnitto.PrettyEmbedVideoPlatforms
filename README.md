@@ -259,8 +259,8 @@ If you want to use the player as a pure component, you can use the `Jonnitto.Pre
 If you want to read the node properties and let the package handle all for you, you should use the [`Jonnitto.PrettyEmbedVideoPlatforms:Content.Video`] prototype. For more comfortable including in your node types, you can disable the content element wrapping with `contentElement = false`. This is useful if you want to create, for example, a text with a video node type.
 
 If you want to parse existing content with iframes and replace them automatically, you can add
- [`Jonnitto.PrettyEmbed:ReplaceIframes`] with an `@process` like that:
- `@process.replaceIframes = Jonnitto.PrettyEmbed:ReplaceIframes`. The `content` property is per default set to `${value}`.
+[`Jonnitto.PrettyEmbed:ReplaceIframes`] with an `@process` like that:
+`@process.replaceIframes = Jonnitto.PrettyEmbed:ReplaceIframes`. The `content` property is per default set to `${value}`.
 
 ## Get metadata
 
