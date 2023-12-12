@@ -1,0 +1,207 @@
+prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto.PrettyEmbed:Content) {
+    @propTypes {
+        // These properties are already defined in Jonnitto.PrettyEmbed:Content
+        id = ${PropTypes.string}
+        class = ${PropTypes.anyOf( PropTypes.string, PropTypes.arrayOf( PropTypes.string ) )}
+        maximumWidth = ${PropTypes.integer}
+        loadImageStrategy = ${PropTypes.oneOf(['lazy', 'eager', null, false])}
+        wrapper = ${PropTypes.anyOf(PropTypes.string, PropTypes.boolean)}
+        image = ${PropTypes.instanceOf('Neos\Media\Domain\Model\ImageInterface')}
+        async = ${PropTypes.boolean}
+        debug = ${PropTypes.boolean}
+        metadata = ${PropTypes.shape({
+            'videoID': PropTypes.anyOf(PropTypes.string, PropTypes.integer),
+            'title': PropTypes.string,
+            'aspectRatio': PropTypes.anyOf(PropTypes.string, PropTypes.integer, PropTypes.float),
+            'duration': PropTypes.integer,
+            'image': PropTypes.string,
+            'thumbnail': PropTypes.instanceOf('Neos\Media\Domain\Model\ImageInterface'),
+            'href': PropTypes.string,
+            'embedHref': PropTypes.string
+        })}
+
+        // Use this for a custom poster src set
+        posterSrcset = ${PropTypes.string}
+    }
+
+    label = ${this.metadata ? this.metadata.title : null}
+    aspectRatio = ${this.metadata ? this.metadata.aspectRatio : null}
+
+    platform = ${q(node).property('platform')}
+    player = ${this.platform == 'youtube' ? 'YouTube' : 'Vimeo'}
+    type = ${q(node).property('type')}
+    videoID = ${q(node).property('videoID')}
+
+    // This can used as alternative preview
+    content = null
+
+    showBackendNotification = true
+
+    // `false` to disable the gdpr message, `popup` to open the video in a new window or `true` to show the gdpr message in the player
+    gdprHandling = Jonnitto.PrettyEmbed:GetProperty {
+        property = 'gdprHandling'
+    }
+
+    // Should the video be opened on a lightbox?
+    lightbox = Jonnitto.PrettyEmbed:GetProperty {
+        property = 'lightbox'
+    }
+
+    // When the lightbox is set, should the preview image preserve his aspect ratio?
+    preserveAspectRatio = Jonnitto.PrettyEmbed:GetProperty {
+        property = 'preserveAspectRatio'
+    }
+
+    // If no aspect ratio can be calcualted from the oembed service, you have the possibility to set a fallback aspect ratio.
+    fallbackAspectRatio = Jonnitto.PrettyEmbed:GetProperty {
+        property = 'fallbackAspectRatio'
+    }
+
+    // Whether to restart the video automatically after reaching the end.
+    loop = Jonnitto.PrettyEmbed:GetProperty {
+        property = 'loop'
+    }
+
+    // This parameter indicates whether the video player controls are displayed
+    controls = Jonnitto.PrettyEmbed:GetProperty {
+        property = 'controls'
+    }
+
+
+    ////////////////////////////////
+    // Additional settings for Vimeo
+    ////////////////////////////////
+
+    // Whether the player is in background mode, which hides the playback controls, enables autoplay, and loops the video.
+    background = Jonnitto.PrettyEmbed:GetProperty {
+        property = 'background'
+    }
+
+    // The hexadecimal color value of the playback controls, which is normally 00ADEF.
+    color = Jonnitto.PrettyEmbed:GetProperty {
+        property = 'color'
+    }
+
+    // Internal
+    videoID.@process.getIDFromUrl = ${this.metadata.videoID ? this.metadata.videoID : (value && this.platform ? Jonnitto.PrettyEmbedHelper.platformID(value, this.platform) : value)}
+
+    renderer = Neos.Fusion:Component {
+        @apply.props = ${props}
+
+        _basisOptions = Neos.Fusion:DataStructure {
+            id = ${props.id}
+            class = ${props.class}
+            maximumWidth = ${props.maximumWidth}
+            loadImageStrategy = ${props.loadImageStrategy}
+            wrapper = ${props.wrapper}
+            gdprHandling = ${props.gdprHandling}
+            controls = ${props.controls}
+            loop = ${props.loop}
+            lightbox = ${props.lightbox}
+            preserveAspectRatio = ${props.preserveAspectRatio}
+            fallbackAspectRatio = ${props.fallbackAspectRatio}
+            label = ${props.label}
+            aspectRatio = ${props.aspectRatio}
+            preview = ${props.content || null}
+            posterSrcset = ${props.posterSrcset}
+            poster = Neos.Fusion:Case {
+                @if.noCustomPreview = ${!props.content}
+                hasPersistentResource {
+                    condition = ${props.image || props.metadata.thumbnail}
+                    renderer = Neos.Neos:ImageUri {
+                        asset = ${props.image || props.metadata.thumbnail}
+                        async = ${props.async}
+                        maximumWidth = ${props.maximumWidth}
+                    }
+                }
+                imageFromVimeo {
+                    condition = ${props.videoID && props.platform == 'vimeo'}
+                    renderer = ${props.metadata.image || Jonnitto.PrettyEmbedHelper.vimeoThumbnail(props.videoID)}
+                }
+                imageFromYouTube {
+                    condition = ${props.videoID && props.platform == 'youtube' && props.type == 'video'}
+                    renderer = ${props.metadata.image || Jonnitto.PrettyEmbedHelper.youtubeThumbnail(props.videoID)}
+                }
+            }
+            poster2x = Neos.Neos:ImageUri {
+                @if {
+                    noCustomSrcSet = ${!props.posterSrcset}
+                    noCustomPreview = ${!props.content}
+                    hasAsset = ${props.image || props.metadata.thumbnail}
+                    hasEnoughPixel = ${props.image ? props.image.width >= props.maximumWidth * 2 : props.metadata.thumbnail.width >= props.maximumWidth * 2}
+                }
+                asset = ${props.image || props.metadata.thumbnail}
+                async = ${props.async}
+                maximumWidth = ${props.maximumWidth * 2}
+            }
+            href = Neos.Fusion:Case {
+                hasHref {
+                    condition = ${props.metadata.href}
+                    renderer = ${props.metadata.href}
+                }
+                vimeo {
+                    condition = ${props.videoID && props.platform == 'vimeo'}
+                    renderer = ${Jonnitto.PrettyEmbedHelper.vimeoHref(props.videoID, false)}
+                }
+                youtube {
+                    condition = ${props.videoID && props.platform == 'youtube'}
+                    renderer = ${Jonnitto.PrettyEmbedHelper.youtubeHref(props.videoID, props.type, false)}
+                }
+            }
+            embedHref = Neos.Fusion:Case {
+                hasHref {
+                    condition = ${props.metadata.embedHref}
+                    renderer = ${props.metadata.embedHref}
+                }
+                vimeo {
+                    condition = ${props.videoID && props.platform == 'vimeo'}
+                    renderer = ${Jonnitto.PrettyEmbedHelper.vimeoHref(props.videoID, true)}
+                }
+                youtube {
+                    condition = ${props.videoID && props.platform == 'youtube'}
+                    renderer = ${Jonnitto.PrettyEmbedHelper.youtubeHref(props.videoID, props.type, true)}
+                }
+            }
+        }
+
+        renderer = Neos.Fusion:Case {
+            @process.debug = Neos.Fusion:Debug.Console {
+                @if.debug = ${props.debug}
+                package = 'PrettyEmbedVideoPlatforms'
+                props = ${props}
+            }
+            noVideoID {
+                condition = ${!props.videoID || !props.platform}
+                renderer = Jonnitto.PrettyEmbed:Notification {
+                    @if.set = ${props.showBackendNotification}
+                    key = 'noVideoID'
+                    default = 'Please add a Video URL / ID or url in the inspector'
+                }
+            }
+            noPosterOrPreview {
+                condition = ${!props._basisOptions.poster && !props._basisOptions.preview}
+                renderer = Jonnitto.PrettyEmbed:Notification {
+                    @if.set = ${props.showBackendNotification}
+                    key = 'needPreviewImage'
+                    default = 'You need to define a custom preview image.'
+                }
+            }
+            youtube {
+                condition = ${props.platform == 'youtube'}
+                renderer = Jonnitto.PrettyEmbed:Presentation.YouTube {
+                    @apply.props = ${props._basisOptions}
+                    videoID = ${props.type == 'video' ? props.videoID : null}
+                    playlistID = ${props.type == 'playlist' ? props.videoID : null}
+                }
+            }
+            vimeo {
+                condition = ${props.platform == 'vimeo'}
+                renderer = Jonnitto.PrettyEmbed:Presentation.Vimeo {
+                    @apply.props = ${props._basisOptions}
+                    videoID = ${props.videoID}
+                    color = ${props.color}
+                }
+            }
+        }
+    }
+}

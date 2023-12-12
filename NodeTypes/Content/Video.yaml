@@ -10,11 +10,8 @@
 
     # If you want to give the editor more control,
     # you can also add also these mixins:
-    # 'Jonnitto.PrettyEmbedHelper:Mixin.AllowFullScreen': true
     # 'Jonnitto.PrettyEmbedHelper:Mixin.Loop': true
     # 'Jonnitto.PrettyEmbedHelper:Mixin.Controls': true
-    # 'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.Youtube.ClosedCaptions': true
-    # 'Jonnitto.PrettyEmbedVideoPlatforms:Mixin.Youtube.ShowRelated': true
   ui:
     label: 'Vimeo / YouTube'
     icon: play-circle
