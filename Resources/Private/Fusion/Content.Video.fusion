@@ -8,6 +8,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
         wrapper = ${PropTypes.anyOf(PropTypes.string, PropTypes.boolean)}
         image = ${PropTypes.instanceOf('Neos\Media\Domain\Model\ImageInterface')}
         async = ${PropTypes.boolean}
+        debug = ${PropTypes.boolean}
         metadata = ${PropTypes.shape({
             'videoID': PropTypes.anyOf(PropTypes.string, PropTypes.integer),
             'title': PropTypes.string,
@@ -165,7 +166,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
 
         renderer = Neos.Fusion:Case {
             @process.debug = Neos.Fusion:Debug.Console {
-                @if.debug = ${props._debug}
+                @if.debug = ${props.debug}
                 props = ${props}
             }
             noVideoID {
