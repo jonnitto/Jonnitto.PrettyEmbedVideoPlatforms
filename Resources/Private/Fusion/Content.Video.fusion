@@ -167,6 +167,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
         renderer = Neos.Fusion:Case {
             @process.debug = Neos.Fusion:Debug.Console {
                 @if.debug = ${props.debug}
+                package = 'PrettyEmbedVideoPlatforms'
                 props = ${props}
             }
             noVideoID {
