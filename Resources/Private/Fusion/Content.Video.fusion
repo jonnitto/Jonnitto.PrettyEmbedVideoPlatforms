@@ -84,6 +84,8 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
 
     // Internal
     videoID.@process.getIDFromUrl = ${this.metadata.videoID ? this.metadata.videoID : (value && this.platform ? Jonnitto.PrettyEmbedHelper.platformID(value, this.platform) : value)}
+    _posterThumbnail = ${Jonnitto.PrettyEmbedHelper.createThumbnail(this.image || this.metadata.thumbnail, this.maximumWidth)}
+    _posterThumbnail.@if.noCustomPreview = ${!this.content && (this.image || this.metadata.thumbnail)}
 
     renderer = Neos.Fusion:Component {
         @apply.props = ${props}
@@ -104,8 +106,17 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
             aspectRatio = ${props.aspectRatio}
             preview = ${props.content || null}
             posterSrcset = ${props.posterSrcset}
+
+            posterWidth = ${props._posterThumbnail ? props._posterThumbnail.width : null}
+            posterHeight = ${props._posterThumbnail ? props._posterThumbnail.height : null}
             poster = Neos.Fusion:Case {
                 @if.noCustomPreview = ${!props.content}
+                hasThumbnail {
+                    condition = ${props._posterThumbnail}
+                    renderer = Neos.Fusion:ResourceUri {
+                        resource = ${props._posterThumbnail.resource}
+                    }
+                }
                 hasPersistentResource {
                     condition = ${props.image || props.metadata.thumbnail}
                     renderer = Neos.Neos:ImageUri {
