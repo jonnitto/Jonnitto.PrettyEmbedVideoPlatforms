@@ -5,6 +5,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
         class = ${PropTypes.anyOf( PropTypes.string, PropTypes.arrayOf( PropTypes.string ) )}
         maximumWidth = ${PropTypes.integer}
         loadImageStrategy = ${PropTypes.oneOf(['lazy', 'eager', null, false])}
+        imageformat = ${PropTypes.oneOf(['jpg', 'jpeg', 'gif', 'png', 'wbmp', 'xbm', 'webp', 'bmp'])}
         wrapper = ${PropTypes.anyOf(PropTypes.string, PropTypes.boolean)}
         image = ${PropTypes.instanceOf('Neos\Media\Domain\Model\ImageInterface')}
         async = ${PropTypes.boolean}
@@ -84,7 +85,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
 
     // Internal
     videoID.@process.getIDFromUrl = ${this.metadata.videoID ? this.metadata.videoID : (value && this.platform ? Jonnitto.PrettyEmbedHelper.platformID(value, this.platform) : value)}
-    _posterThumbnail = ${Jonnitto.PrettyEmbedHelper.createThumbnail(this.image || this.metadata.thumbnail, this.maximumWidth)}
+    _posterThumbnail = ${Jonnitto.PrettyEmbedHelper.createThumbnail(this.image || this.metadata.thumbnail, this.maximumWidth, this.imageformat)}
     _posterThumbnail.@if.noCustomPreview = ${!this.content && (this.image || this.metadata.thumbnail)}
 
     renderer = Neos.Fusion:Component {
@@ -122,6 +123,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
                     renderer = Neos.Neos:ImageUri {
                         asset = ${props.image || props.metadata.thumbnail}
                         async = ${props.async}
+                        format = ${props.imageformat}
                         maximumWidth = ${props.maximumWidth}
                     }
                 }
@@ -143,6 +145,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
                 }
                 asset = ${props.image || props.metadata.thumbnail}
                 async = ${props.async}
+                format = ${props.imageformat}
                 maximumWidth = ${props.maximumWidth * 2}
             }
             href = Neos.Fusion:Case {
