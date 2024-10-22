@@ -25,7 +25,7 @@
         }
     ],
     "require": {
-        "jonnitto/prettyembedhelper": "^6.0 || dev-master"
+        "jonnitto/prettyembedhelper": "^6.0 || dev-neos9 || dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -36,6 +36,12 @@
         "installer-name": "Jonnitto.PrettyEmbedVideoPlatforms",
         "neos": {
             "package-key": "Jonnitto.PrettyEmbedVideoPlatforms"
+        }
+    },
+    "repositories": {
+        "queo/prettyembedhelper": {
+            "tpye": "git",
+            "url": "https://github.com/queoGmbH/Jonnitto.PrettyEmbedHelper.git"
         }
     }
 }
