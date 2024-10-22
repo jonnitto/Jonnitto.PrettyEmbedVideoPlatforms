@@ -40,7 +40,7 @@
     },
     "repositories": {
         "queo/prettyembedhelper": {
-            "tpye": "git",
+            "type": "git",
             "url": "https://github.com/queoGmbH/Jonnitto.PrettyEmbedHelper.git"
         }
     }
