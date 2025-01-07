@@ -201,7 +201,7 @@ prototype(Jonnitto.PrettyEmbedVideoPlatforms:Content.Video) < prototype(Jonnitto
             condition = ${props.platform == 'youtube'}
             renderer = Jonnitto.PrettyEmbed:Presentation.YouTube {
                 @apply.props = ${private.basisOptions}
-                videoID = ${props.type == 'video' ? private.videoID : null}
+                videoID = ${props.type != 'playlist' ? private.videoID : null}
                 playlistID = ${props.type == 'playlist' ? private.videoID : null}
             }
         }

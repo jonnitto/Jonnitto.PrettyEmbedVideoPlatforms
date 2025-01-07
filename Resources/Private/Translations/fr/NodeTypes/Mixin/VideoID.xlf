@@ -15,6 +15,10 @@
                 <source>Type of ID / URL</source>
                 <target>Type d'ID / URL</target>
             </trans-unit>
+            <trans-unit id="properties.type.selectBoxEditor.values.short" xml:space="preserve">
+                <source>Short video</source>
+                <target>Vidéo courte</target>
+            </trans-unit>
             <trans-unit id="properties.type.selectBoxEditor.values.video" xml:space="preserve">
                 <source>Video</source>
                 <target>Vidéo</target>

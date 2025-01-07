@@ -36,6 +36,9 @@
           editorOptions:
             disabled: true
             values:
+              short:
+                label: i18n
+                icon: video
               video:
                 label: i18n
                 icon: film
