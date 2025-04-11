@@ -15,6 +15,7 @@ preview images, lightbox feature, and advanced customization of embed options.
 | 2.\*    | >= 5.3      |     ✗      |
 | 3.\*    | >= 5.3      |     ✗      |
 | 6.\*    | >= 7.3      |     ✓      |
+| 7.\*    | >= 9.0      |     ✓      |
 
 > The version jump was made to have all packages from the PrettyEmbed series on the same number
 
